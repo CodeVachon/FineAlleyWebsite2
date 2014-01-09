@@ -9,11 +9,21 @@
 component extends="base" displayname="event" persistent="true" table="events" {
 
 	property name="title" type="string";
-	property name="dateTime" type="string" ormtype="timestamp";
+	property name="dateTime" type="datetime" ormtype="timestamp";
 	property name="body" type="string" length="25000";
 	property name="location" type="string" length="250";
 
+
 	public function init(){
-		return this;
+		return super.init();
+	}
+
+
+	public void function refreshProperties() {
+		super.refreshProperties();
+		if (!structKeyExists(VARIABLES,'title')) { VARIABLES.title = javacast("null",""); }
+		if (!structKeyExists(VARIABLES,'dateTime')) { VARIABLES.dateTime = javacast("null",""); }
+		if (!structKeyExists(VARIABLES,'body')) { VARIABLES.body = javacast("null",""); }
+		if (!structKeyExists(VARIABLES,'location')) { VARIABLES.location = javacast("null",""); }
 	}
 }

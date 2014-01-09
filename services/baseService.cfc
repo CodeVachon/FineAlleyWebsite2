@@ -11,11 +11,18 @@ component extends="services.object" displayname="baseService" hint="I am the bas
 					transaction action="commit";
 				}
 			} catch (any e) {
+				//writeDump(e); abort;
 				throw("Error while trying to save [#ARGUMENTS.objectToSave.getClassName()#]")
 			}
 		}
 		return ARGUMENTS.objectToSave;
 	} // close saveObject()
+
+
+	public void function removeObject(required any objectToDelete) {
+		ARGUMENTS.objectToDelete.setIsDeleted(true);
+		this.saveObject(ARGUMENTS.objectToDelete);
+	} // close removeObject()
 
 
 	public any function setValuesInObject(required any objectToInsertInto,required struct values) {

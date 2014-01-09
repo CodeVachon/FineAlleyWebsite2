@@ -28,6 +28,16 @@ component output="false" displayname="base" mappedSuperClass="true" extends="ser
 	}
 
 
+	public struct function validate() hint="returns a structure of validation errors" {
+		return structNew();
+	}
+
+
+	public boolean function doesValidate() {
+		return (structCount(this.validate()) == 0);
+	}
+
+
 	public boolean function hasProperty(required string propertyName) hint="returns if object has the specified property" {
 		ARGUMENTS.propertyName = trim(ARGUMENTS.propertyName);
 
@@ -71,6 +81,11 @@ component output="false" displayname="base" mappedSuperClass="true" extends="ser
 	}
 
 
+	public struct function getPropertyStruct() hint="returns a structure of current properties"  {
+		return getTheseProperties(GetMetaData(this));
+	}
+
+
 	public void function preLoad() hint="call before this being populated" {}
 	public void function postLoad() hint="call after this being populated" {
 		this.refreshProperties();
@@ -99,5 +114,38 @@ component output="false" displayname="base" mappedSuperClass="true" extends="ser
 			propertiesNames = utl.mergeArrays(propertiesNames,getPropertyNames(ARGUMENTS.metaData.extends));
 		}
 		return propertiesNames;
+	}
+
+
+	private struct function getTheseProperties(struct metaData = GetMetaData(this)) {
+		var properties = structNew();
+		if (structKeyExists(arguments.metaData,"PROPERTIES")) {
+			// loop through all defined properties 
+			for (var i=1;i<=arrayLen(arguments.metaData.PROPERTIES);i++) {
+				var property = arguments.metaData.PROPERTIES[i];
+				if (isObject(property)) {
+					properties[property.name] = property.getTheseProperties();
+				} else if (isArray(property)) {
+					properties[property.name] = arrayNew(1);
+					for (var j=1;j<=arrayLen(property);j++) {
+						var arrayValue = property[j];
+						if (isObject(arrayValue)) {
+							arrayAppend(properties[property.name],arrayValue.getTheseProperties());
+						} else {
+							arrayAppend(properties[property.name],arrayValue);
+						}
+					}
+				} else {
+					properties[property.name] = this.getProperty(property.name);
+				} // close if object/array
+			} // close For
+			// lets get any super properties 
+			if (structKeyExists(arguments.metaData,"EXTENDS") && structKeyExists(arguments.metaData.extends,"PROPERTIES")) {
+				var extendedProperties = getTheseProperties(arguments.metaData.extends);
+				// merge in the super properties 
+				structAppend(properties,extendedProperties);
+			}
+		}
+		return properties;
 	}
 }

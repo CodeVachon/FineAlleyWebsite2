@@ -2,10 +2,10 @@
   "name": "FineAlleyWebsite",
   "version": "0.0.0",
   "description": "Grunt Control Package",
-  "homepage": "localhost",
+  "homepage": "https://github.com/liaodrake/FineAlleyWebsite2",
   "repository": {
     "type": "git",
-    "url": "localhost.git"
+    "url": "https://github.com/liaodrake/FineAlleyWebsite2.git"
   },
   "developer":"Christopher Vachon",
   "devDependencies": {
