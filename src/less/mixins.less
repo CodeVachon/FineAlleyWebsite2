@@ -1,0 +1,20 @@
+.rounded-corners (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.gradiant-tb-ld (@color,@flux: 10%) {
+	background: -webkit-linear-gradient(lighten(@color,@flux), @color, darken(@color, @flux));
+	background: -o-linear-gradient(lighten(@color,@flux), @color, darken(@color, @flux));
+	background: -moz-linear-gradient(lighten(@color,@flux), @color, darken(@color, @flux));
+	background: linear-gradient(lighten(@color,@flux), @color, darken(@color, @flux));
+}
+.gradiant-tb-dl (@color,@flux: 10%) {
+	background: -webkit-linear-gradient(darken(@color,@flux), @color, lighten(@color, @flux));
+	background: -o-linear-gradient(darken(@color,@flux), @color, lighten(@color, @flux));
+	background: -moz-linear-gradient(darken(@color,@flux), @color, lighten(@color, @flux));
+	background: linear-gradient(darken(@color,@flux), @color, lighten(@color, @flux));
+}

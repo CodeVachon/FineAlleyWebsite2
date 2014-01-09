@@ -1,0 +1,113 @@
+.btn {
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+  background: -webkit-linear-gradient(#f7f7f7, #dddddd, #c4c4c4);
+  background: -o-linear-gradient(#f7f7f7, #dddddd, #c4c4c4);
+  background: -moz-linear-gradient(#f7f7f7, #dddddd, #c4c4c4);
+  background: linear-gradient(#f7f7f7, #dddddd, #c4c4c4);
+  border: 1px #999 solid;
+  margin: 0.5em 0.5em 0.5em 0;
+  padding: 0.3em 0.6em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+.btn.btn-primary {
+  background: -webkit-linear-gradient(#0000cc, #000099, #000066);
+  background: -o-linear-gradient(#0000cc, #000099, #000066);
+  background: -moz-linear-gradient(#0000cc, #000099, #000066);
+  background: linear-gradient(#0000cc, #000099, #000066);
+  color: #eee;
+}
+.btn.btn-primary:hover {
+  background: -webkit-linear-gradient(#0000b3, #000099, #000080);
+  background: -o-linear-gradient(#0000b3, #000099, #000080);
+  background: -moz-linear-gradient(#0000b3, #000099, #000080);
+  background: linear-gradient(#0000b3, #000099, #000080);
+}
+.btn.btn-danger {
+  background: -webkit-linear-gradient(#b30000, #990000, #800000);
+  background: -o-linear-gradient(#b30000, #990000, #800000);
+  background: -moz-linear-gradient(#b30000, #990000, #800000);
+  background: linear-gradient(#b30000, #990000, #800000);
+  color: #eee;
+}
+.btn.btn-danger:hover {
+  background: -webkit-linear-gradient(#a80000, #990000, #8a0000);
+  background: -o-linear-gradient(#a80000, #990000, #8a0000);
+  background: -moz-linear-gradient(#a80000, #990000, #8a0000);
+  background: linear-gradient(#a80000, #990000, #8a0000);
+}
+.btn:hover {
+  background: -webkit-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: -o-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: -moz-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+}
+.btn .active,
+.btn:active {
+  background: -webkit-linear-gradient(#c4c4c4, #dddddd, #f7f7f7);
+  background: -o-linear-gradient(#c4c4c4, #dddddd, #f7f7f7);
+  background: -moz-linear-gradient(#c4c4c4, #dddddd, #f7f7f7);
+  background: linear-gradient(#c4c4c4, #dddddd, #f7f7f7);
+}
+.btn .active.btn-primary,
+.btn:active.btn-primary {
+  background: -webkit-linear-gradient(#000066, #000099, #0000cc);
+  background: -o-linear-gradient(#000066, #000099, #0000cc);
+  background: -moz-linear-gradient(#000066, #000099, #0000cc);
+  background: linear-gradient(#000066, #000099, #0000cc);
+}
+.btn .active.btn-danger,
+.btn:active.btn-danger {
+  background: -webkit-linear-gradient(#800000, #990000, #b30000);
+  background: -o-linear-gradient(#800000, #990000, #b30000);
+  background: -moz-linear-gradient(#800000, #990000, #b30000);
+  background: linear-gradient(#800000, #990000, #b30000);
+}
+.btn.btn-mini {
+  font-size: 0.7em;
+}
+.btn.btn-small {
+  font-size: 0.8em;
+}
+.btn.btn-large {
+  font-size: 1.3em;
+}
+.btn-group .btn {
+  border-radius: 0;
+  margin: 0;
+  border-left: none;
+  float: left;
+}
+.btn-mini.btn-group .btn {
+  font-size: 0.7em;
+}
+.btn-small.btn-group .btn {
+  font-size: 0.8em;
+}
+.btn-large.btn-group .btn {
+  font-size: 1.3em;
+}
+.btn-group .btn:first-child {
+  border-radius: 5px 0 0 5px;
+  border-left: 1px #999 solid;
+}
+.btn-group .btn:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.btn-group .btn:only-child {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+h1 {
+  color: red;
+}
+
