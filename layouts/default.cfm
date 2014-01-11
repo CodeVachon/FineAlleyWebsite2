@@ -1,7 +1,7 @@
 <cfscript>
 	
 </cfscript>
-<cfcontent reset="true" type="text/html" /><!doctype html>
+<cfcontent reset="true" type="text/html" /><cfprocessingdirective suppressWhiteSpace="true"><!doctype html>
 <html lang="en">
 	<head>
 		<title><cfoutput><cfif len(REQUEST.template.getPageTitle()) gt 0>#REQUEST.template.getPageTitle()# | </cfif>#REQUEST.template.getSiteName()#</cfoutput></title>
@@ -30,6 +30,12 @@
 				}
 				writeOutput(chr(9) & chr(9) & "</style>");
 			}
+
+			if (!structKeyExists(RC,"layoutSideBars") && (listGetAt(RC.action,1,'.') == 'admin')) {
+				RC.layoutSideBars = false;
+			} else {
+				RC.layoutSideBars = true;
+			}
 		</cfscript>
 	</head>
 	<body>
@@ -38,19 +44,23 @@
 				<header class='row'>
 					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
 				</header>
-				<div class='row'>
-					<div class='col-md-8 col-sm-7'>
-						#body#
-					</div><!--- close .column --->
-					<div class='col-md-4 col-sm-5'>
-						<aside class='facebook col-sm-12'>
-							<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
-							#view('home/facebookFeed')#
-						</aside>
-					</div>
-				</div><!--- close .row --->
+				<cfif RC.layoutSideBars>
+					<div class='row'>
+						<div class='col-md-8 col-sm-7'>
+							#body#
+						</div><!--- close .column --->
+						<div class='col-md-4 col-sm-5'>
+							<aside class='facebook col-sm-12'>
+								<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
+								#view('home/facebookFeed')#
+							</aside>
+						</div>
+					</div><!--- close .row --->
+				<cfelse>
+					#body#
+				</cfif>
 				<footer class='row'>
-					<div class='col-sm-12'>
+					<div class='col-sm-12 text-right'>
 						<p>We (the band members of Fine Alley and/or the band as a whole) do not claim rights or ownership to any music we play unless otherwise specified.</p>
 						<p>Hosted By: <a href="http://www.rabeycreative.com/">Rabey Creative</a></p>
 						<p>© Fine Alley 2013 | <a href="">Privacy Policy</a> | <a href="">Term of Use</a></p>
@@ -64,5 +74,4 @@
 			}
 		</cfscript>
 	</body>
-</html>
-
+</html></cfprocessingdirective>
