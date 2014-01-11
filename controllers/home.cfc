@@ -17,4 +17,8 @@ component output="false" displayname="home"  {
 		VARIABLES.fw.service("eventService.getEvents","events");
 	}
 
+
+	public void function event(required struct RC) {
+		VARIABLES.fw.service("eventService.getEvent","event");
+	}
 }

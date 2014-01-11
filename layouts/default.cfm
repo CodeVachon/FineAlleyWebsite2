@@ -1,5 +1,5 @@
 <cfscript>
-	
+	param name="RC.layoutSideBars" default='true';
 </cfscript>
 <cfcontent reset="true" type="text/html" /><cfprocessingdirective suppressWhiteSpace="true"><!doctype html>
 <html lang="en">
@@ -29,12 +29,6 @@
 					writeOutput(REQUEST.template.getInlineCSS());
 				}
 				writeOutput(chr(9) & chr(9) & "</style>");
-			}
-
-			if (!structKeyExists(RC,"layoutSideBars") && (listGetAt(RC.action,1,'.') == 'admin')) {
-				RC.layoutSideBars = false;
-			} else {
-				RC.layoutSideBars = true;
 			}
 		</cfscript>
 	</head>

@@ -13,14 +13,23 @@ component output="false" displayname="admin"  {
 	}
 
 
+	public void function before(required struct RC) {
+		RC.layoutSideBars = false;
+	}
+
+
 	public void function default(required struct RC) {
+	}
+
+
+	public void function listEvents(required struct RC) {
 		VARIABLES.fw.service("eventService.getEvents","events");
 	}
 
 
 	public void function startEditEvent(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
-			VARIABLES.fw.service("eventService.editEventAndSave","events");
+			VARIABLES.fw.service("eventService.editEventAndSave","event");
 		} else if (structKeyExists(RC,"eventID")) {
 			VARIABLES.fw.service("eventService.getEvent","event");
 		}
@@ -30,7 +39,8 @@ component output="false" displayname="admin"  {
 	}
 	public void function endEditEvent(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
-			// GOTO THE EVENT
+			RC.eventID = RC.event.getID();
+			VARIABLES.fw.redirect(action='home.event',append='eventId');
 		} else if (structKeyExists(RC,"eventID")) {
 			for (property in RC.event.getPropertyStruct()) {
 				RC[property] = RC.event.getProperty(property);
