@@ -4,7 +4,7 @@
 
 <cfoutput>
 	<cfloop array="#RC.events#" index="RC.event">
-		<article>
+		<article class='col-lg-6 col-md-12'>
 			<header><h3>#RC.event.getTitle()#</h3></header>
 			#RC.event.getBody()#
 			<footer>
@@ -12,12 +12,12 @@
 				<p>Location: #RC.event.getLocation()#</p>
 			</footer>
 			<div class='btn-group btn-mini'>
-				<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn'>Edit Event</a>
+				<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn btn-default'>Edit Event</a>
 			</div>
 		</article>
 	</cfloop>
 </cfoutput>
 
 <div class='btn-group btn-mini'>
-	<a href='/admin/editEvent' class='btn'>Add Event</a>
+	<a href='/admin/editEvent' class='btn btn-default'>Add Event</a>
 </div>

@@ -39,48 +39,22 @@
 					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
 				</header>
 				<div class='row'>
-					<div class='col-md-8'>
+					<div class='col-md-8 col-sm-7'>
 						#body#
 					</div><!--- close .column --->
-					<div class='col-md-4'>
-						<aside class='facebook'>
-							<cfscript>
-								_appID = "272812729524274";;
-								_appSecrect = "597f1635cfe9b5bf85aa9664a023379f";
-								facebookFineAlleyID = "417727031647789";
-								_accessToken = "#_appID#|#_appSecrect#";
-								facebookGraphAPI = new services.FacebookGraphAPI().init(_accessToken,_appID);
-								facebookData = facebookGraphAPI.getObject(id=facebookFineAlleyID);
-							</cfscript>
+					<div class='col-md-4 col-sm-5'>
+						<aside class='facebook col-sm-12'>
 							<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
-							<header>
-								<img src="#facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
-								<div class='bar'>
-									<div class='image'>
-										<img src="https://graph.facebook.com/#facebookData.id#/picture?width=200&height=200" class="img-responsive img-thumbnail" alt="facebook Profile Image">
-									</div>
-									<div class='title'>
-										<a href='#facebookData.link#'>#facebookData.name#</a>
-									</div>
-								</div>
-								<table class="table clearfix"> 
-									<tr>
-										<th>Band Members</th>
-										<td>#facebookData.band_members#</td>
-									</tr>
-									<tr>
-										<th>Genre</th>
-										<td>#facebookData.genre#</td>
-									</tr>								
-								</table>
-							<header>
+							#view('home/facebookFeed')#
 						</aside>
 					</div>
 				</div><!--- close .row --->
 				<footer class='row'>
-					<p>We (the band members of Fine Alley and/or the band as a whole) do not claim rights or ownership to any music we play unless otherwise specified.</p>
-					<p>Hosted By: <a href="http://www.rabeycreative.com/">Rabey Creative</a></p>
-					<p>© Fine Alley 2013 | <a href="">Privacy Policy</a> | <a href="">Term of Use</a></p>
+					<div class='col-sm-12'>
+						<p>We (the band members of Fine Alley and/or the band as a whole) do not claim rights or ownership to any music we play unless otherwise specified.</p>
+						<p>Hosted By: <a href="http://www.rabeycreative.com/">Rabey Creative</a></p>
+						<p>© Fine Alley 2013 | <a href="">Privacy Policy</a> | <a href="">Term of Use</a></p>
+					</div>
 				</footer>
 			</cfoutput>
 		</div>
