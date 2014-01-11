@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 			}, // close .cssCompile
 			lessCompile: {
 				files: ['src/less/*.less'],
-				tasks: ['less:file','csslint:file','cssmin:file'],
+				tasks: ['less:file','cssmin:file'], // ,'csslint:file'
 				options: {
 					spawn: false,
 					nospawn: true
@@ -178,9 +178,9 @@ module.exports = function(grunt) {
 		} else if (target == 'lessCompile') {
 			var cssFileName = filepath.replace("\\less\\","\\css\\").replace(/(\.less)$/gi,'.css');
 			grunt.log.writeln('CSS File:' + cssFileName);
-			grunt.config(['less', 'file', 'src'], srcFolder + "\\less\\*");
+			grunt.config(['less', 'file', 'src'], srcFolder + "\\less\\bootstrap.less");
 			grunt.config(['less', 'file', 'dest'], srcFolder + "\\css\\<%= pkg.name %>.css");
-			grunt.config('csslint.file.src', srcFolder + "\\css\\<%= pkg.name %>.css");
+			//grunt.config('csslint.file.src', srcFolder + "\\css\\<%= pkg.name %>.css");
 			grunt.config(['cssmin', 'file', 'src'], srcFolder + "\\css\\<%= pkg.name %>.css");
 			grunt.config(['cssmin', 'file', 'dest'], destFolder + "\\css\\<%= pkg.name %>.min.css");
 		} // close if target...

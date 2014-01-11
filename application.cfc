@@ -58,8 +58,10 @@ component extends="frameworkOne.framework" {
 
 		REQUEST.template = new services.template();
 		REQUEST.template.setSiteName("Fine Alley");
-		REQUEST.template.addFile('http://code.jquery.com/jquery-1.10.1.min.js');
+		REQUEST.template.addFile('//code.jquery.com/jquery-1.10.1.min.js','//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js');
 		REQUEST.template.addFile('/includes/css/FineAlleyWebsite.min.css');
+
+		REQUEST.template.addMetaTag(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
 
 		REQUEST.template.addMetaTag(property="fb:app_id",content="272812729524274");
 		REQUEST.template.addMetaTag(property="og:url",content="http://www.finealley.com#buildUrl(getSectionAndItem())#");
