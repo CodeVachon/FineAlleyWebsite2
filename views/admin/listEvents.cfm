@@ -28,6 +28,3 @@
 		</tbody>
 	</table>
 </cfoutput>
-
-
-<div style='color: #000'><cfDump var="#RC#" />

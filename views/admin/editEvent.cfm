@@ -26,6 +26,6 @@
 				<option value="true"#((structKeyExists(RC,"isDeleted") && RC.isDeleted)?" selected='selected'":"")#>Yes</option>
 			</select>
 		</div>
-		<input type='submit' name="btnSave" value="Save" class='btn btn-primary btn-large' />
+		<input type='submit' name="btnSave" value="Save" class='btn btn-primary btn-lg' />
 	</form>
 </cfoutput>

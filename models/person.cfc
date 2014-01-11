@@ -37,21 +37,7 @@ component output="false" displayname="" extends="base" persistent="true" table="
 
 		if (len(VARIABLES["firstName"]) == 0) { _validationErrors["firstName"] = "invalid lenth for First Name"; }
 		if (len(VARIABLES["lastName"]) == 0) { _validationErrors["lastName"] = "invalid lenth for Last Name"; }
-		if (len(VARIABLES["emailAddress"]) == 0) { _validationErrors["emailAddress"] = "invalid lenth for Email Address"; }
-		else if (arrayLen(reMatch("^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+\.[a-zA-Z]{2,5}$",VARIABLES.emailAddress)) == 0) { _validationErrors["emailAddress"] = "invalid format for Email Address"; }
-		else if (arrayLen(ORMExecuteQuery("
-								SELECT DISTINCT p
-								FROM person p
-								WHERE p.emailAddress=:emailAddress
-								AND p.id != :thisID
-								",{
-									thisId=VARIABLES.ID,
-									emailAddress=VARIABLES.EmailAddress
-								},false)
-				) > 0) {
-			_validationErrors["emailAddress"] = "Email Address is already in use";
-		}
-		if (len(VARIABLES["password"]) == 0) { _validationErrors["password"] = "invalid lenth for Password"; }
+		if (len(VARIABLES["username"]) == 0) { _validationErrors["username"] = "invalid lenth for User Name"; }
 
 		return _validationErrors;
 	}

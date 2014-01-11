@@ -22,7 +22,35 @@ component output="false" displayname="admin"  {
 	}
 
 
+	public void function listUsers(required struct RC) {
+		REQUEST.template.setPageTitle("List Users");
+		VARIABLES.fw.service("personService.getPeople","people");
+	}
+
+
+	public void function startEditUser(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("personService.editPersonAndSave","person");
+		} else if (structKeyExists(RC,"personID")) {
+			VARIABLES.fw.service("personService.getPerson","person");
+		}
+	}
+	public void function editUser(required struct RC) {
+		REQUEST.template.setPageTitle("Edit User");
+	}
+	public void function endEditUser(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.redirect(action='admin.listUsers');
+		} else if (structKeyExists(RC,"personID")) {
+			for (property in RC.person.getPropertyStruct()) {
+				RC[property] = RC.person.getProperty(property);
+			}
+		}
+	}
+
+
 	public void function listEvents(required struct RC) {
+		REQUEST.template.setPageTitle("List Events");
 		VARIABLES.fw.service("eventService.getEvents","events");
 	}
 
