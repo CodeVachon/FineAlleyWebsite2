@@ -47,6 +47,7 @@ component output="false" extends="baseService" displayname=""  {
 
 
 	public models.person function editPersonAndSave() {
+		if (isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return this.saveObject(this.editPerson(ARGUMENTS));
 	} // close editPersonAndSave() 	
 }
