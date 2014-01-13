@@ -35,7 +35,7 @@
 	<body>
 		<div class='container'>
 			<cfoutput>
-				<header class='row'>
+				<header class='col-xs-12'>
 					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
 				</header>
 				<cfif RC.layoutSideBars>
