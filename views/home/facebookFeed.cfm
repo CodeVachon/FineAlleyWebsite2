@@ -1,7 +1,7 @@
 <cfscript>
-	_appID = "272812729524274";;
-	_appSecrect = "597f1635cfe9b5bf85aa9664a023379f";
-	facebookFineAlleyID = "417727031647789";
+	_appID = "-";;
+	_appSecrect = "-";
+	facebookFineAlleyID = "-";
 	_accessToken = "#_appID#|#_appSecrect#";
 	facebookGraphAPI = new services.FacebookGraphAPI().init(_accessToken,_appID);
 	facebookData = facebookGraphAPI.getObject(id=facebookFineAlleyID);
