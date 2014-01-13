@@ -57,6 +57,8 @@ component extends="frameworkOne.framework" {
 		}
 
 		REQUEST.template = new services.template();
+		REQUEST.security = new services.security();
+
 		REQUEST.template.setSiteName("Fine Alley");
 		REQUEST.template.addFile('//code.jquery.com/jquery-1.10.1.min.js','//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js');
 		REQUEST.template.addFile('/includes/css/FineAlleyWebsite.min.css');

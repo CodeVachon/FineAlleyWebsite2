@@ -15,10 +15,30 @@ component output="false" displayname="admin"  {
 
 	public void function before(required struct RC) {
 		RC.layoutSideBars = false;
+		if ((RC.action != "admin.login") && !REQUEST.security.checkPermission("isAdmin")) {
+			VARIABLES.fw.redirect(action='admin.login');
+		}
 	}
 
 
 	public void function default(required struct RC) {
+	}
+
+
+	public void function startLogin(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("security.logIn","void");
+		}
+	}
+	public void function login(required struct RC) {
+		REQUEST.template.setPageTitle("Login");
+	}
+	public void function endLogin(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			if (REQUEST.security.checkPermission("isAdmin")) {
+				VARIABLES.fw.redirect(action='admin.default');
+			}
+		}
 	}
 
 

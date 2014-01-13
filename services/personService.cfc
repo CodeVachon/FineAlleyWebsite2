@@ -17,6 +17,11 @@ component output="false" extends="baseService" displayname=""  {
 
 		if (structKeyExists(ARGUMENTS,'personID')) {
 			_person = entityLoadByPK("person",ARGUMENTS.personID);
+		} else if (structKeyExists(ARGUMENTS,'username')) {
+			var _personArray = ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.userName = :username",{username = ARGUMENTS.username},false);
+			if (arrayLen(_personArray) > 0) {
+				_person = _personArray[1];
+			}
 		}
 
 		if (isNull(_person)) { _person = entityNew("person"); }
