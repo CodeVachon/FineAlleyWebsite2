@@ -1,11 +1,16 @@
 @text-color: #eee;
 @body-bg: #110f0e;
 
-footer:last-child {
-	font-size: 0.7em;
-	margin: 1em 0 0 0;
-	color: darken(@text-color, 40%);
-}
+@navbar-default-color:             #ccc;
+@navbar-default-bg:                #333;
+@navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-color:                darken(@navbar-default-color, 10%);
+@navbar-default-link-hover-color:          @navbar-default-color;
+@navbar-default-link-hover-bg:             transparent;
+@navbar-default-link-active-color:         lighten(@navbar-default-color, 10%);
+@navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-disabled-color:       #ccc;
+@navbar-default-link-disabled-bg:          transparent;
 
 .fb-titleblock {
 	display: block;
@@ -25,10 +30,17 @@ footer:last-child {
 
 .cfdump_struct { color: #000; }
 
-.container > header:first-child {
-	background-image: url('/includes/img/finealleySplash500.jpg');
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 360px;
-	a { display: none; }
+.container {
+	& > header:first-child {
+		background-image: url('/includes/img/finealleySplash500.jpg');
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 360px;
+		a { display: none; }
+	}
+	& > footer:last-child {
+		font-size: 0.7em;
+		margin: 1em 0 0 0;
+		color: darken(@text-color, 40%);
+	}
 }

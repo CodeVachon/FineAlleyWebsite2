@@ -31,6 +31,12 @@
 				writeOutput(chr(9) & chr(9) & "</style>");
 			}
 		</cfscript>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
 	</head>
 	<body>
 		<div class='container'>
@@ -38,6 +44,32 @@
 				<header class='col-xs-12'>
 					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
 				</header>
+
+				<nav class="col-xs-12 navbar navbar-default" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="##mainNav">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/">#REQUEST.template.getSiteName()#</a>
+					</div>
+					<div class="collapse navbar-collapse" id="mainNav">
+						<ul class="nav navbar-nav">
+							<cfif REQUEST.security.checkPermission("isAdmin")>
+								<li><a href='/admin'>Admin</a></li>
+							</cfif>
+						</ul>
+						<cfif REQUEST.security.isLoggedIn()>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="/admin/logout">Logout</a></li>
+							</ul>
+						</cfif>
+					</div>
+				</nav>
+
+
 				<cfif RC.layoutSideBars>
 					<div class='row'>
 						<div class='col-md-8 col-sm-7'>
@@ -57,7 +89,7 @@
 					<div class='col-sm-12 text-right'>
 						<p>We (the band members of Fine Alley and/or the band as a whole) do not claim rights or ownership to any music we play unless otherwise specified.</p>
 						<p>Hosted By: <a href="http://www.rabeycreative.com/">Rabey Creative</a></p>
-						<p>© Fine Alley 2013 | <a href="">Privacy Policy</a> | <a href="">Term of Use</a></p>
+						<p>&copy; Fine Alley 2013 <!---| <a href="">Privacy Policy</a> | <a href="">Term of Use</a>---></p>
 					</div>
 				</footer>
 			</cfoutput>
