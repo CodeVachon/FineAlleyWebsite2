@@ -42,6 +42,14 @@ component output="false" displayname="admin"  {
 	}
 
 
+	public void function logout(required struct RC) {
+		VARIABLES.fw.service("security.logout","void");
+	}
+	public void function endLogout(required struct RC) {
+		VARIABLES.fw.redirect(action='admin.login');
+	}
+
+
 	public void function listUsers(required struct RC) {
 		REQUEST.template.setPageTitle("List Users");
 		VARIABLES.fw.service("personService.getPeople","people");
