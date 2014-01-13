@@ -8,6 +8,8 @@
 	</cfloop>
 </cfoutput>
 
-<div class='btn-group btn-mini'>
-	<a href='/admin/editEvent' class='btn btn-default'>Add Event</a>
-</div>
+<cfif REQUEST.security.checkPermission("isAdmin")>
+	<div class='btn-group'>
+		<a href='/admin/editEvent' class='btn btn-default'>Add Event</a>
+	</div>
+</cfif>

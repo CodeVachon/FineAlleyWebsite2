@@ -6,8 +6,10 @@
 			<p>Date: #dateFormat(RC.event.getDateTime(),"MMM D, YYYY")# @ #timeFormat(RC.event.getDateTime(),"H:MM")#</p>
 			<p>Location: #RC.event.getLocation()#</p>
 		</footer>
-		<div class='btn-group btn-mini'>
-			<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn btn-default'>Edit Event</a>
-		</div>
+		<cfif REQUEST.security.checkPermission("isAdmin")>
+			<div class='btn-group btn-mini'>
+				<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn btn-default btn-xs'>Edit Event</a>
+			</div>
+		</cfif>
 	</article>
 </cfoutput>
