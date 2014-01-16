@@ -85,6 +85,7 @@ component output="false" displayname="admin"  {
 
 	public void function startEditEvent(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
+			RC.dateTime = RC.date & " " & RC.time;
 			VARIABLES.fw.service("eventService.editEventAndSave","event");
 		} else if (structKeyExists(RC,"eventID")) {
 			VARIABLES.fw.service("eventService.getEvent","event");
@@ -102,6 +103,8 @@ component output="false" displayname="admin"  {
 			for (property in RC.event.getPropertyStruct()) {
 				RC[property] = RC.event.getProperty(property);
 			}
+			RC.date = dateFormat(RC.dateTime,"YYYY/MM/DD");
+			RC.time = dateFormat(RC.dateTime,"HH:MM");
 		}
 	}
 
