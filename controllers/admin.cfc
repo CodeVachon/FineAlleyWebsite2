@@ -104,4 +104,23 @@ component output="false" displayname="admin"  {
 		}
 	}
 
+
+	public void function startWebsiteSettings(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("websiteSettingsService.editWebsiteSettingsAndSave","websiteSettings");
+		}
+	}
+	public void function websiteSettings(required struct RC) {
+		REQUEST.template.setPageTitle("Edit Website Settings");
+	}
+	public void function endWebsiteSettings(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.redirect(action='admin.default');
+		} else {
+			for (property in APPLICATION.websiteSettings.getPropertyStruct()) {
+				RC[property] = APPLICATION.websiteSettings.getProperty(property);
+			}
+			RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
+		}
+	}
 }
