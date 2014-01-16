@@ -92,6 +92,7 @@ component output="false" displayname="admin"  {
 	}
 	public void function editEvent(required struct RC) {
 		REQUEST.template.setPageTitle("Edit Event");
+		REQUEST.template.addFile("/includes/js/formOptions.min.js");
 	}
 	public void function endEditEvent(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {

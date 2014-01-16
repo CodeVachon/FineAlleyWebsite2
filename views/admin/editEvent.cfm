@@ -8,8 +8,12 @@
 			<input type='text' name='title' class="form-control" value="#((structKeyExists(RC,"title"))?RC.title:"")#" placeholder='Title' />
 		</div>
 		<div class='form-group'>
-			<label for="dateTime">Date / Time</label>
-			<input type='text' name='dateTime' class="form-control" value="#((structKeyExists(RC,"dateTime"))?trim(dateFormat(RC.dateTime,"YYYY-MM-DD") & " " & timeFormat(RC.dateTime,"HH:MM")):"")#" placeholder='#dateFormat(now(),"YYYY-MM-DD")# #timeFormat(now(),"HH:00")#' class='dateTimeSelector' />
+			<label for="date">Date</label>
+			<input type='text' name='date' class="form-control" value="#((structKeyExists(RC,"date"))?dateFormat(RC.date,"YYYY/MM/DD"):"")#" placeholder='#dateFormat(now(),"YYYY/MM/DD")#' data-datepicker='' />
+		</div>
+		<div class='form-group'>
+			<label for="time">Time</label>
+			<input type='text' name='time' class="form-control" value="#((structKeyExists(RC,"time"))?timeFormat(RC.time,"HH:MM:SS"):"")#" placeholder='#timeFormat(now(),"HH:MM:SS")#' data-timepicker="" />
 		</div>
 		<div class='form-group'>
 			<label for="body">Description</label>

@@ -1,4 +1,6 @@
+@white: #fff;
 @text-color: #eee;
+@inverse-text-color: #333;
 @body-bg: #110f0e;
 
 @navbar-default-color:             #ccc;
@@ -11,6 +13,8 @@
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
+
+//@import url("/includes/css/font-awesome.min.css");
 
 .fb-titleblock {
 	display: block;
@@ -44,3 +48,8 @@
 		color: darken(@text-color, 40%);
 	}
 }
+
+@import "datepicker-build";
+@import "datepicker";
+@import "timepicker";
+
