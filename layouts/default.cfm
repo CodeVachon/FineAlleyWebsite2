@@ -105,7 +105,7 @@
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			ga('create', '#APPLICATION.websiteSettings.getGoogle_gaCode()#', '#ReReplaceNoCase(CGI.SERVER_NAME,"^\w+\.","","one")#');
+			ga('create', '#APPLICATION.websiteSettings.getGoogle_gaCode()#', '#((listLen(CGI.SERVER_NAME) GT 2)?ReReplaceNoCase(CGI.SERVER_NAME,"^\w+\.","","one"):CGI.SERVER_NAME)#');
 			ga('send', 'pageview');
 		</script></cfoutput></cfif>
 	</body>
