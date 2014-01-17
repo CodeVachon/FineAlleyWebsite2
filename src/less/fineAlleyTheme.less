@@ -14,6 +14,10 @@
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
 
+@navbar-default-toggle-hover-bg:           lighten(@navbar-default-bg, 10%);
+@navbar-default-toggle-icon-bar-bg:        @navbar-default-border;
+@navbar-default-toggle-border-color:       @navbar-default-border;
+
 //@import url("/includes/css/font-awesome.min.css");
 
 .fb-titleblock {
@@ -40,6 +44,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		height: 360px;
+		z-index: 1;
 		a { display: none; }
 	}
 	& > footer:last-child {
@@ -47,6 +52,10 @@
 		margin: 1em 0 0 0;
 		color: darken(@text-color, 40%);
 	}
+}
+
+.navbar-default {
+	z-index: 10000;
 }
 
 @import "datepicker-build";
