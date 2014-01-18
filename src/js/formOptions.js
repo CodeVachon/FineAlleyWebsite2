@@ -36,7 +36,9 @@ $(document).ready(function() {
 						menubar : false
 					};
 					if ($(this).attr("data-wysiwyg") == "basic") {
-
+						_options.plugins = "link";
+						_options.statusbar = false;
+						_options.toolbar = "bold italic underline | link unlink ";
 					}
 					$(this).tinymce(_options);
 				});

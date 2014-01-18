@@ -19,6 +19,13 @@ component output="false" displayname="home"  {
 
 
 	public void function event(required struct RC) {
+		REQUEST.template.setPageTitle("View Event");
 		VARIABLES.fw.service("eventService.getEvent","event");
+	}
+
+
+	public void function contactUs(required struct RC) {
+		REQUEST.template.addFile("/includes/js/formOptions.min.js");
+		REQUEST.template.setPageTitle("Contact Us");
 	}
 }
