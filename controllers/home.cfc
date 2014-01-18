@@ -24,8 +24,14 @@ component output="false" displayname="home"  {
 	}
 
 
+	public void function startContactUs(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("mailService.validateContactUsFormAndSend","validationErrors");
+		}
+	}
 	public void function contactUs(required struct RC) {
 		REQUEST.template.addFile("/includes/js/formOptions.min.js");
 		REQUEST.template.setPageTitle("Contact Us");
 	}
+	public void function endContactUs(required struct RC) {}
 }
