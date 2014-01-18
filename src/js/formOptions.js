@@ -23,6 +23,25 @@ $(document).ready(function() {
 				});
 			});
 		} // close if time-picker
+
+		if (_form.find("[data-wysiwyg]")) {
+			console.log("wysiwyg Found");
+			_fileLoad = loadFileForFN("/includes/js/tinymce/jquery.tinymce.min.js","tinymce");
+			_fileLoad.done(function() {
+				_form.find("[data-wysiwyg]").each(function() {
+					var _options = {
+						script_url: '/includes/js/tinymce/tinymce.min.js',
+						width:      '100%',
+						height:     200,
+						menubar : false
+					};
+					if ($(this).attr("data-wysiwyg") == "basic") {
+
+					}
+					$(this).tinymce(_options);
+				});
+			});
+		}
 	});
 });
 

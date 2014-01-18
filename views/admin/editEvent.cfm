@@ -17,7 +17,7 @@
 		</div>
 		<div class='form-group'>
 			<label for="body">Description</label>
-			<textarea name="body" class="form-control">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
+			<textarea name="body" data-wysiwyg='' class="form-control">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
 		</div>
 		<div class='form-group'>
 			<label for="location">Location</label>
