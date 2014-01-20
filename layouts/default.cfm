@@ -42,12 +42,12 @@
 		<div class='container'>
 			<cfoutput>
 				
-				<header class='col-xs-12'>
+				
 					<!---
 					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
 					--->
 					#view('home/carousel')#
-				</header>
+				
 
 
 
