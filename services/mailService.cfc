@@ -6,7 +6,7 @@
 *
 */
 
-component output="false" displayname="mailService" extends="services.object" {
+component output="false" displayname="mailService" extends="baseService" {
 
 	public void function sendEmail() {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
@@ -30,6 +30,17 @@ component output="false" displayname="mailService" extends="services.object" {
 		mail.setspoolenable(true);
 		mail.setTimeout("300");
 		mail.setuseTLS("false");
+
+		var saveMailMessage = entityNew("mail");
+		saveMailMessage.setSubject(mail.getSubject());
+		saveMailMessage.setBody(mail.getBody());
+
+		saveMailMessage.setFromName("#ARGUMENTS.firstName# #ARGUMENTS.lastName#");
+		saveMailMessage.setFromEmailAddress(ARGUMENTS.emailAddress);
+		saveMailMessage.setFromPhone(ARGUMENTS.phoneNumber);
+
+		// We save the message to the database in the event of Mail Delivery Failure
+		saveMailMessage = this.saveObject(saveMailMessage);
 
 		try {
 			mail.send();
