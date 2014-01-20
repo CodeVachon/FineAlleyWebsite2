@@ -31,6 +31,11 @@ component output="false" displayname="home"  {
 			RC.SMTPUsername = APPLICATION.websiteSettings.getProperty("Mail_Username");
 			RC.SMTPPassword = APPLICATION.websiteSettings.getProperty("Mail_Password");
 			RC.SMTPuseSSL = APPLICATION.websiteSettings.getProperty("Mail_UseSSL");
+
+			RC.SMTPFromName = APPLICATION.websiteSettings.getProperty("Mail_FromName");
+			RC.SMTPFromEmailAddress = APPLICATION.websiteSettings.getProperty("Mail_FromEmailAddress");
+			RC.toAddress = APPLICATION.websiteSettings.getProperty("Mail_SendToEmailAddress");
+
 			VARIABLES.fw.service("mailService.validateContactUsFormAndSend","validationErrors");
 		}
 	}

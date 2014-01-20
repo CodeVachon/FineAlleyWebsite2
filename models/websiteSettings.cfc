@@ -30,6 +30,10 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 	property name="Mail_Password" type="string";
 	property name="Mail_UseSSL" type="boolean";
 
+	property name="Mail_FromName" type="string";
+	property name="Mail_FromEmailAddress" type="string";
+	property name="Mail_SendToEmailAddress" type="string";
+
 	public function init(){
 		this.refreshProperties();
 		return super.init();
@@ -58,6 +62,10 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 		if (!structKeyExists(VARIABLES,"Mail_Username")) { VARIABLES["Mail_Username"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"Mail_Password")) { VARIABLES["Mail_Password"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"Mail_UseSSL")) { VARIABLES["Mail_UseSSL"] = false; }
+
+		if (!structKeyExists(VARIABLES,"Mail_FromName")) { VARIABLES["Mail_FromName"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_FromEmailAddress")) { VARIABLES["Mail_FromEmailAddress"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_SendToEmailAddress")) { VARIABLES["Mail_SendToEmailAddress"] = javaCast("null",""); }
 	}
 
 
