@@ -37,10 +37,26 @@
 
 
 		<div class='form-group'>
-			<label for="isDeleted">Remove / Delete</label>
-			<select name="isDeleted"  class="form-control">
-				<option value="false"#((structKeyExists(RC,"isDeleted") && !RC.isDeleted)?" selected='selected'":"")#>No</option>
-				<option value="true"#((structKeyExists(RC,"isDeleted") && RC.isDeleted)?" selected='selected'":"")#>Yes</option>
+			<label for="Mail_SMTPServer">SMTP Server</label>
+			<input type='text' name='Mail_SMTPServer' class="form-control" value="#((structKeyExists(RC,"Mail_SMTPServer"))?RC.Mail_SMTPServer:"")#" placeholder='Title' />
+		</div>
+		<div class='form-group'>
+			<label for="Mail_Port">SMTP Server Port</label>
+			<input type='text' name='Mail_Port' class="form-control" value="#((structKeyExists(RC,"Mail_Port"))?RC.Mail_Port:"")#" placeholder='Title' />
+		</div>
+		<div class='form-group'>
+			<label for="Mail_Username">SMTP Username</label>
+			<input type='text' name='Mail_Username' class="form-control" value="#((structKeyExists(RC,"Mail_Username"))?RC.Mail_Username:"")#" placeholder='Title' />
+		</div>
+		<div class='form-group'>
+			<label for="Mail_Password">SMTP Password</label>
+			<input type='password' name='Mail_Password' class="form-control" value="#((structKeyExists(RC,"Mail_Password"))?RC.Mail_Password:"")#" placeholder='Title' />
+		</div>
+		<div class='form-group'>
+			<label for="Mail_UseSSL">Use SSL</label>
+			<select name="Mail_UseSSL"  class="form-control">
+				<option value="false"#((structKeyExists(RC,"Mail_UseSSL") && !RC.Mail_UseSSL)?" selected='selected'":"")#>No</option>
+				<option value="true"#((structKeyExists(RC,"Mail_UseSSL") && RC.Mail_UseSSL)?" selected='selected'":"")#>Yes</option>
 			</select>
 		</div>
 

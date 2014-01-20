@@ -23,6 +23,12 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 	// Google
 	property name="Google_gaCode" type="string";
 
+	// Mail Settings
+	property name="Mail_SMTPServer" type="string";
+	property name="Mail_Port" type="string";
+	property name="Mail_Username" type="string";
+	property name="Mail_Password" type="string";
+	property name="Mail_UseSSL" type="boolean";
 
 	public function init(){
 		this.refreshProperties();
@@ -45,6 +51,13 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 
 		// Google
 		if (!structKeyExists(VARIABLES,"Google_gaCode")) { VARIABLES["Google_gaCode"] = javaCast("null",""); }
+
+		// Mail
+		if (!structKeyExists(VARIABLES,"Mail_SMTPServer")) { VARIABLES["Mail_SMTPServer"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_Port")) { VARIABLES["Mail_Port"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_Username")) { VARIABLES["Mail_Username"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_Password")) { VARIABLES["Mail_Password"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Mail_UseSSL")) { VARIABLES["Mail_UseSSL"] = false; }
 	}
 
 
