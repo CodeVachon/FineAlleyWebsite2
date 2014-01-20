@@ -57,6 +57,7 @@
 					</div>
 					<div class="collapse navbar-collapse" id="mainNav">
 						<ul class="nav navbar-nav">
+							<li><a href='/contact-us'>Contact Us</a></li>
 							<cfif REQUEST.security.checkPermission("isAdmin")>
 								<li><a href='/admin'>Admin</a></li>
 							</cfif>

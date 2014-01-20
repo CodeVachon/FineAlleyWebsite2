@@ -12,7 +12,7 @@
 	</cfif>
 
 
-	<form action='#buildURL(RC.action)#' method="post">
+	<form action='#buildURL("contact-us")#' method="post">
 		<div class='form-group col-xs-12 col-md-6<cfif structKeyExists(RC.validationErrors,"firstName")> has-error</cfif>'>
 			<label for="firstName">First Name</label>
 			<input type='text' name='firstName' class="form-control" value="#((structKeyExists(RC,"firstName"))?RC.firstName:"")#" />

@@ -23,6 +23,7 @@ component extends="frameworkOne.framework" {
 		SESOmitIndex = true,
 		applicationKey = 'frameworkOne',
 		routes = [
+			{"/contact-us" = "/home/contactUs"}
 		]
 	};
 
