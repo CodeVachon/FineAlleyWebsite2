@@ -6,24 +6,33 @@
 *
 */
 
-component output="false" displayname="mailService" extends="object" {
+component output="false" displayname="mailService" extends="services.object" {
 
-	public void function sendEmail(required string content, string subject = "Website Message", string toAddress = "info@christophervachon.com") {
+	public void function sendEmail() {
+		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		var mail = new mail();
-		mail.setSubject(ARGUMENTS.subject);
-		mail.setTo(ARGUMENTS.toAddress);
+		mail.setSubject((structKeyExists(ARGUMENTS,"subject"))?ARGUMENTS.subject:"Unknown Subject");
+		mail.setTo((structKeyExists(ARGUMENTS,"toAddress"))?ARGUMENTS.toAddress:"Unknown Address");
 
-		mail.setFrom( "Fine Alley Website <no-reply@finealley.com>" );
 		mail.setType("HTML");
 
-		if (structKeyExists(ARGUMENTS,"SMTPServer")) { mail.setSever(ARGUMENTS["SMTPServer"]); }
+		if (structKeyExists(ARGUMENTS,"SMTPServer")) { mail.setServer(ARGUMENTS["SMTPServer"]); }
 		if (structKeyExists(ARGUMENTS,"SMTPPort")) { mail.setPort(ARGUMENTS["SMTPPort"]); }
 		if (structKeyExists(ARGUMENTS,"SMTPUsername")) { mail.setUsername(ARGUMENTS["SMTPUsername"]); }
 		if (structKeyExists(ARGUMENTS,"SMTPPassword")) { mail.setPassword(ARGUMENTS["SMTPPassword"]); }
 		if (structKeyExists(ARGUMENTS,"SMTPuseSSL")) { mail.setUseSSL(ARGUMENTS["SMTPuseSSL"]); }
 
+		if (structKeyExists(ARGUMENTS,"SMTPFromName")) { mail.setFrom(ARGUMENTS["SMTPFromName"] & " <#((structKeyExists(ARGUMENTS,"SMTPFromEmailAddress"))?ARGUMENTS["SMTPFromEmailAddress"]:"no-reply@#lCase(CGI.SERVER_NAME)#")#>"); }
+		if (structKeyExists(ARGUMENTS,"SMTPFromEmailAddress")) { mail.setReplyto(ARGUMENTS["SMTPFromEmailAddress"]); }
+
+		if (structKeyExists(ARGUMENTS,"content")) { mail.setBody(ARGUMENTS["content"]); }  
+
+		mail.setspoolenable(true);
+		mail.setTimeout("300");
+		mail.setuseTLS("false");
+
 		try {
-			mail.send(body=ARGUMENTS.content);
+			mail.send();
 		} catch (any e) {
 			writeDump(e);
 			abort;
@@ -34,6 +43,7 @@ component output="false" displayname="mailService" extends="object" {
 
 
 	public struct function validateContactUsFormAndSend() {
+		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		var validationErrors = {};
 
 		if (!structKeyExists(ARGUMENTS,"firstName") || (len(trim(ARGUMENTS.firstName)) == 0)) {
@@ -57,7 +67,7 @@ component output="false" displayname="mailService" extends="object" {
 			if (!structKeyExists(ARGUMENTS,"phoneNumber") || (len(trim(ARGUMENTS.phoneNumber)) == 0)) {
 				ARGUMENTS.phoneNumber = "Not Provided";
 			}
-			var messageBody = "
+			var ARGUMENTS.content = "
 				<h1>Website Message</h1>
 				<p>
 					From: #ARGUMENTS.firstName# #ARGUMENTS.lastName# [<a href='mailto:#ARGUMENTS.emailAddress#'>#ARGUMENTS.emailAddress#</a>]<br/>
@@ -65,7 +75,7 @@ component output="false" displayname="mailService" extends="object" {
 				</p>
 				#ARGUMENTS.body#
 			";
-			this.sendEmail(messageBody,ARGUMENTS.subject);
+			this.sendEmail(ARGUMENTS);
 		}
 
 		return validationErrors;
