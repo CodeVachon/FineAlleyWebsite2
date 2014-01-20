@@ -8,6 +8,11 @@
 
 component output="false" displayname="mailService" extends="baseService" {
 
+	public array function getMailHistory() {
+		return ORMExecuteQuery("FROM mail WHERE isDeleted=0 ORDER BY dateTime DESC",{},false);
+	}
+
+
 	public void function sendEmail() {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		var mail = new mail();

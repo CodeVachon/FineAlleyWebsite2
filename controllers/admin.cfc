@@ -128,4 +128,10 @@ component output="false" displayname="admin"  {
 			RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
 		}
 	}
+
+
+	public void function mailHistory(required struct RC) {
+		VARIABLES.fw.service("mailService.getMailHistory","mailHistory");
+		REQUEST.template.setPageTitle("View Mail History");
+	}
 }
