@@ -26,6 +26,11 @@ component output="false" displayname="home"  {
 
 	public void function startContactUs(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
+			RC.SMTPServer = APPLICATION.websiteSettings.getProperty("Mail_SMTPServer");
+			RC.SMTPPort = APPLICATION.websiteSettings.getProperty("Mail_Port");
+			RC.SMTPUsername = APPLICATION.websiteSettings.getProperty("Mail_Username");
+			RC.SMTPPassword = APPLICATION.websiteSettings.getProperty("Mail_Password");
+			RC.SMTPuseSSL = APPLICATION.websiteSettings.getProperty("Mail_UseSSL");
 			VARIABLES.fw.service("mailService.validateContactUsFormAndSend","validationErrors");
 		}
 	}

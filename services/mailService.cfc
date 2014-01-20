@@ -8,13 +8,19 @@
 
 component output="false" displayname="mailService" extends="object" {
 
-	public void function sendEmail(required string content, string subject = "Website Message", string toAddress = "theband@finealley.com") {
+	public void function sendEmail(required string content, string subject = "Website Message", string toAddress = "info@christophervachon.com") {
 		var mail = new mail();
 		mail.setSubject(ARGUMENTS.subject);
 		mail.setTo(ARGUMENTS.toAddress);
 
 		mail.setFrom( "Fine Alley Website <no-reply@finealley.com>" );
 		mail.setType("HTML");
+
+		if (structKeyExists(ARGUMENTS,"SMTPServer")) { mail.setSever(ARGUMENTS["SMTPServer"]); }
+		if (structKeyExists(ARGUMENTS,"SMTPPort")) { mail.setPort(ARGUMENTS["SMTPPort"]); }
+		if (structKeyExists(ARGUMENTS,"SMTPUsername")) { mail.setUsername(ARGUMENTS["SMTPUsername"]); }
+		if (structKeyExists(ARGUMENTS,"SMTPPassword")) { mail.setPassword(ARGUMENTS["SMTPPassword"]); }
+		if (structKeyExists(ARGUMENTS,"SMTPuseSSL")) { mail.setUseSSL(ARGUMENTS["SMTPuseSSL"]); }
 
 		try {
 			mail.send(body=ARGUMENTS.content);
