@@ -70,6 +70,10 @@ component output="false" displayname="mailService" extends="baseService" {
 		}
 		if (!structKeyExists(ARGUMENTS,"emailAddress") || (len(trim(ARGUMENTS.emailAddress)) == 0)) {
 			validationErrors.emailAddress = "Please enter an Email Address to contact you at";
+		} else {
+			if (len(reReplaceNoCase(ARGUMENTS.emailAddress,"^[a-z0-9._-]{3,}@[a-z0-9._-]{2,}\.[a-z]{2,5}$","","ONE")) > 0) {
+				validationErrors.emailAddress = "Please enter a Valid Email Address to contact you at";
+			}
 		}
 
 		if (!structKeyExists(ARGUMENTS,"subject") || (len(trim(ARGUMENTS.subject)) == 0)) {
