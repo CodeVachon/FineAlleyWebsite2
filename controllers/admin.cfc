@@ -119,6 +119,7 @@ component output="false" displayname="admin"  {
 	}
 	public void function endWebsiteSettings(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
+			APPLICATION.websiteSettings = RC.websiteSettings;
 			VARIABLES.fw.redirect(action='admin.default');
 		} else {
 			for (property in APPLICATION.websiteSettings.getPropertyStruct()) {
