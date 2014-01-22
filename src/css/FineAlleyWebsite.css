@@ -34,6 +34,9 @@
 .navbar-default {
   z-index: 10000;
 }
+.upcomingEvents article:nth-child(odd) {
+  clear: both;
+}
 /*!
  * Datepicker for Bootstrap
  *
