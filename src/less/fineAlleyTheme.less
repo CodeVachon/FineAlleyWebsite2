@@ -10,9 +10,15 @@
 @navbar-default-link-hover-color:          @navbar-default-color;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         lighten(@navbar-default-color, 10%);
-@navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-active-bg:            darken(@navbar-default-bg, 10%);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
+
+
+@navbar-default-brand-color:               #FFF;
+@navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
+@navbar-default-brand-hover-bg:            transparent;
+
 
 @navbar-default-toggle-hover-bg:           lighten(@navbar-default-bg, 10%);
 @navbar-default-toggle-icon-bar-bg:        @navbar-default-border;
@@ -73,9 +79,19 @@
 	z-index: 10000;
 }
 
-.upcomingEvents {
-	article:nth-child(odd) {
-		clear: both;
+
+.event {
+	footer {
+		p { 
+			margin: 0; 
+			padding: 0; 
+			color: darken(@text-color, 40%);
+		}
+	}
+	.upcomingEvents & {
+		&:nth-child(odd) {
+			clear: both;
+		}
 	}
 }
 

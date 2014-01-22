@@ -55,7 +55,8 @@
 					</div>
 					<div class="collapse navbar-collapse" id="mainNav">
 						<ul class="nav navbar-nav">
-							<li><a href='/contact-us'>Contact Us</a></li>
+							<li<cfif RC.action EQ "home.listevents"> class='active'</cfif>><a href='/events'>Events</a></li>
+							<li<cfif RC.action EQ "home.contactus"> class='active'</cfif>><a href='/contact-us'>Contact Us</a></li>
 							<cfif REQUEST.security.checkPermission("isAdmin")>
 								<li><a href='/admin'>Admin</a></li>
 							</cfif>
