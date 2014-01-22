@@ -12,8 +12,8 @@ component extends="base" displayname="carouselSlide" persistent="true" table="ca
 	property name="slideContents" type="string" length="1500";
 	property name="caption" type="string" length="1000";
 
-	property name="startDate" type="string" length="timestamp";
-	property name="endDate" type="string" length="timestamp";
+	property name="startDate" type="string" ormtype="timestamp";
+	property name="endDate" type="string" ormtype="timestamp";
 
 	public function init(){
 		return super.init();

@@ -2,10 +2,20 @@
 	LOCAL.carousel_ID = "carousel-header";
 
 
-	LOCAL.contentArray = [
+	LOCAL.contentArray = [];
+	LOCAL.carouselSlideService = new services.carouselSlideService();
+	LOCAL.slides = LOCAL.carouselSlideService.getCarouselSlides();
+	for (LOCAL.slide in LOCAL.slides) {
+		arrayAppend(LOCAL.contentArray,{
+			body=LOCAL.slide.getSlideContents(),
+			caption=LOCAL.slide.getCaption()
+		});
+	}
+	/*
 		{body="<img src='/includes/img/slideshow/summerama1140x350.jpg' />",caption="Summerama 2013"}//,
 		//{body="<img src='/includes/img/slideshow/finealleySlide1140x350.jpg' />",caption="Summerama Banner 2013"}
 	];
+	*/
 
 </cfscript>
 <cfif arrayLen(LOCAL.contentArray) GT 0>
@@ -23,7 +33,9 @@
 				<cfloop array="#LOCAL.contentArray#" index="LOCAL.thisSlide">
 					<div class="item#LOCAL.thisClass#">
 						#LOCAL.thisSlide.body#
-						<div class="carousel-caption">#LOCAL.thisSlide.caption#</div>
+						<cfif isDefined("LOCAL.thisSlide.caption") AND (len(LOCAL.thisSlide.caption) GT 0)>
+							<div class="carousel-caption">#LOCAL.thisSlide.caption#</div>
+						</cfif>
 					</div>
 					<cfset LOCAL.thisClass = "" />
 				</cfloop>
