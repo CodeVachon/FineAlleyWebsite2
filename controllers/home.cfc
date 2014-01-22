@@ -26,6 +26,14 @@ component output="false" displayname="home"  {
 	}
 
 
+	public void function listEvents(required struct RC) {
+		REQUEST.template.setPageTitle("Upcoming Events");
+		RC.page = 1;
+		RC.itemsPerPage = 10;
+		VARIABLES.fw.service("eventService.getEvents","events");
+	}
+
+
 	public void function startContactUs(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
 			RC.SMTPServer = APPLICATION.websiteSettings.getProperty("Mail_SMTPServer");
