@@ -70,7 +70,7 @@ component output="false" displayname="admin"  {
 		if (structKeyExists(RC,"btnSave")) {
 			VARIABLES.fw.redirect(action='admin.listUsers');
 		} else if (structKeyExists(RC,"personID")) {
-			for (property in RC.person.getPropertyStruct()) {
+			for (var property in RC.person.getPropertyStruct()) {
 				RC[property] = RC.person.getProperty(property);
 			}
 		}
@@ -100,7 +100,7 @@ component output="false" displayname="admin"  {
 			RC.eventID = RC.event.getID();
 			VARIABLES.fw.redirect(action='home.event',append='eventId');
 		} else if (structKeyExists(RC,"eventID")) {
-			for (property in RC.event.getPropertyStruct()) {
+			for (var property in RC.event.getPropertyStruct()) {
 				RC[property] = RC.event.getProperty(property);
 			}
 			RC.date = dateFormat(RC.dateTime,"YYYY/MM/DD");
@@ -122,7 +122,7 @@ component output="false" displayname="admin"  {
 			APPLICATION.websiteSettings = RC.websiteSettings;
 			VARIABLES.fw.redirect(action='admin.default');
 		} else {
-			for (property in APPLICATION.websiteSettings.getPropertyStruct()) {
+			for (var property in APPLICATION.websiteSettings.getPropertyStruct()) {
 				RC[property] = APPLICATION.websiteSettings.getProperty(property);
 			}
 			RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
@@ -134,4 +134,33 @@ component output="false" displayname="admin"  {
 		VARIABLES.fw.service("mailService.getMailHistory","mailHistory");
 		REQUEST.template.setPageTitle("View Mail History");
 	}
+
+
+	public void function listSlides(required struct RC) {
+		REQUEST.template.setPageTitle("List Slides");
+		VARIABLES.fw.service("carouselSlideService.getCarouselSlides","slides");
+	}
+
+
+	public void function startEditSlide(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("carouselSlideService.editCarouselSlideAndSave","slide");
+		} else if (structKeyExists(RC,"carouselSlideId")) {
+			VARIABLES.fw.service("carouselSlideService.getCarouselSlide","slide");
+		}
+	}
+	public void function editSlide(required struct RC) {
+		REQUEST.template.setPageTitle("Edit Slide");
+		REQUEST.template.addFile("/includes/js/formOptions.min.js");
+	}
+	public void function endEditSlide(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.redirect(action='admin.listSlides');
+		} else if (structKeyExists(RC,"carouselSlideId")) {
+			for (var property in RC.slide.getPropertyStruct()) {
+				RC[property] = RC.slide.getProperty(property);
+			}
+		}
+	}
+
 }
