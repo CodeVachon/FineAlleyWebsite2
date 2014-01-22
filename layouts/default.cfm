@@ -72,10 +72,10 @@
 
 				<cfif RC.layoutSideBars>
 					<div class='row'>
-						<div class='col-md-8 col-sm-7'>
+						<div class='col-xs-12 col-md-8 col-sm-7'>
 							#body#
 						</div><!--- close .column --->
-						<div class='col-md-4 col-sm-5'>
+						<div class='col-xs-12 col-md-4 col-sm-5'>
 							<aside class='facebook col-sm-12'>
 								<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
 								#view('home/facebookFeed')#
