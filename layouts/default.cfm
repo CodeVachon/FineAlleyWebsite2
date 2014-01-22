@@ -41,16 +41,8 @@
 	<body>
 		<div class='container'>
 			<cfoutput>
-				
-				
-					<!---
-					<h1><a href='/'>#REQUEST.template.getSiteName()#</a></h1>
-					--->
-					#view('home/carousel')#
-				
-
-
-
+				<!--- Load in Slide Show --->
+				#view('home/carousel')#
 				<nav class="col-xs-12 navbar navbar-default" role="navigation">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="##mainNav">

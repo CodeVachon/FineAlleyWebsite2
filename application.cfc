@@ -23,7 +23,9 @@ component extends="frameworkOne.framework" {
 		SESOmitIndex = true,
 		applicationKey = 'frameworkOne',
 		routes = [
-			{"/contact-us" = "/home/contactUs"}
+			{"/contact-us" = "/home/contactUs"},
+			{"/events" = "/home/listEvents"},
+			{"/event/:year/:month/:day/:title" = "/home/event/date/:year-:month-:day/title/:title"}
 		]
 	};
 

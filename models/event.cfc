@@ -22,8 +22,13 @@ component extends="base" displayname="event" persistent="true" table="events" {
 	public void function refreshProperties() {
 		super.refreshProperties();
 		if (!structKeyExists(VARIABLES,'title')) { VARIABLES.title = javacast("null",""); }
-		if (!structKeyExists(VARIABLES,'dateTime')) { VARIABLES.dateTime = javacast("null",""); }
+		if (!structKeyExists(VARIABLES,'dateTime')) { VARIABLES.dateTime = now(); }
 		if (!structKeyExists(VARIABLES,'body')) { VARIABLES.body = javacast("null",""); }
 		if (!structKeyExists(VARIABLES,'location')) { VARIABLES.location = javacast("null",""); }
+	}
+
+
+	public string function getEncodedTitle() {
+		return lCase(reReplace(reReplace(trim(this.getTitle()),"\W{1,}","-","all"),"-{1,}$","","one"));
 	}
 }

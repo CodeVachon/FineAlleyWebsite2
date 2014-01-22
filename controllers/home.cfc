@@ -14,6 +14,8 @@ component output="false" displayname="home"  {
 
 
 	public void function default(required struct RC) {
+		RC.page = 1;
+		RC.itemsPerPage = 4;
 		VARIABLES.fw.service("eventService.getEvents","events");
 	}
 

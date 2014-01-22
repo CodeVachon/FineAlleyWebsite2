@@ -1,6 +1,6 @@
 <cfoutput>
 	<article class='col-lg-6 col-md-12'>
-		<header><h3>#RC.event.getTitle()#</h3></header>
+		<header><h3><a href='/event/#year(RC.event.getDateTime())#/#month(RC.event.getDateTime())#/#day(RC.event.getDateTime())#/#RC.event.getEncodedTitle()#'>#RC.event.getTitle()#</a></h3></header>
 		#RC.event.getBody()#
 		<footer>
 			<p>Date: #dateFormat(RC.event.getDateTime(),"MMM D, YYYY")# @ #timeFormat(RC.event.getDateTime(),"H:MM")#</p>

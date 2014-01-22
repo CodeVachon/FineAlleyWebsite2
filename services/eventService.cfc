@@ -19,6 +19,22 @@ component output="false" displayname="" extends="baseService" {
 
 		if (structKeyExists(ARGUMENTS,"eventId")) {
 			_event = ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE e.id=:id",{id=ARGUMENTS.eventId},true);
+		} else if (structKeyExists(ARGUMENTS,"date")) {
+			ARGUMENTS.date = replace(ARGUMENTS.date,"-","/","all");
+			if (isDate(ARGUMENTS.date)) {
+				var _dayStart = createDateTime(year(ARGUMENTS.date),month(ARGUMENTS.date),day(ARGUMENTS.date),0,0,0);
+				var _dayEnd = createDateTime(year(ARGUMENTS.date),month(ARGUMENTS.date),day(ARGUMENTS.date),23,59,59);
+				var _possibleEvents = ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE e.dateTime > :dayStart AND e.dateTime < :dayEnd",{dayStart=_dayStart,dayEnd=_dayEnd},false);
+				if (arrayLen(_possibleEvents) == 1) {
+					_event = _possibleEvents[1];
+				} else {
+					for (var _thisEvent in _possibleEvents) {
+						if (_thisEvent.getEncodedTitle() == ARGUMENTS.title) {
+							_event = _thisEvent;
+						}
+					}
+				}
+			}
 		} else if (structKeyExists(ARGUMENTS,"id")) {
 			_event = ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE e.id=:id",{id=ARGUMENTS.id},true);
 		}
@@ -30,12 +46,19 @@ component output="false" displayname="" extends="baseService" {
 
 	public array function getEvents() {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+
+		if (!structKeyExists(ARGUMENTS,"page")) { ARGUMENTS.page = 1; }
+		if (!structKeyExists(ARGUMENTS,"itemsPerPage")) { ARGUMENTS.itemsPerPage = 25; }
+
+		var _maxResults = int(ARGUMENTS.itemsPerPage);
+		var _offset=((ARGUMENTS.page-1)*_maxResults);
+
 		if (structKeyExists(ARGUMENTS,"allEvents") && isBoolean(ARGUMENTS.allEvents) && ARGUMENTS.allEvents) {
 			return ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE e.isDeleted=:isDeleted ORDER BY e.dateTime DESC",{isDeleted=false,now=now()},false);
 		} else if (structKeyExists(ARGUMENTS,"pastEvents") && isBoolean(ARGUMENTS.pastEvents) && ARGUMENTS.pastEvents) {
 			return ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE e.isDeleted=:isDeleted AND e.dateTime < :now ORDER BY e.dateTime DESC",{isDeleted=false,now=now()},false);
 		} else {
-			return ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE  e.isDeleted=:isDeleted AND e.dateTime > :now ORDER BY e.dateTime ASC",{isDeleted=false,now=now()},false);
+			return ORMExecuteQuery("SELECT DISTINCT e FROM event e WHERE  e.isDeleted=:isDeleted AND e.dateTime > :now ORDER BY e.dateTime ASC",{isDeleted=false,now=now()},false,{maxResults=_maxResults,offset=_offset});
 		}
 	}
 

@@ -7,9 +7,3 @@
 		#view('home/event')#
 	</cfloop>
 </cfoutput>
-
-<cfif REQUEST.security.checkPermission("isAdmin")>
-	<div class='btn-group'>
-		<a href='/admin/editEvent' class='btn btn-default'>Add Event</a>
-	</div>
-</cfif>
