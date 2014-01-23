@@ -148,4 +148,9 @@ component output="false" displayname="base" mappedSuperClass="true" extends="ser
 		}
 		return properties;
 	}
+
+
+	private string function urlEncodeValue(required string value) {
+		return lCase(reReplace(reReplace(trim(ARGUMENTS.value),"\W{1,}","-","all"),"-{1,}$","","one"));
+	}
 }

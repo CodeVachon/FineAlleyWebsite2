@@ -33,7 +33,7 @@ component extends="base" displayname="event" persistent="true" table="events" {
 
 
 	public string function getEncodedTitle() {
-		return lCase(reReplace(reReplace(trim(this.getTitle()),"\W{1,}","-","all"),"-{1,}$","","one"));
+		return urlEncodeValue(this.getTitle());
 	}
 
 
