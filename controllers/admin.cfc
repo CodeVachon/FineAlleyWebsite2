@@ -190,4 +190,23 @@ component output="false" displayname="admin"  {
 			}
 		}
 	}
+
+
+	public void function startAddVenueToEvent(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("eventService.addVenueToEventAndSave","event");
+		} else {
+			VARIABLES.fw.service("eventService.getEvent","event");
+			VARIABLES.fw.service("venueService.getVenues","venues");
+		}
+	}
+	public void function addVenueToEvent(required struct RC) {
+		REQUEST.template.setPageTitle("Add Venue to Event");
+	}
+	public void function endAddVenueToEvent(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			RC.eventID = RC.event.getID();
+			VARIABLES.fw.redirect(action='home.event',append='eventId');
+		} 
+	}
 }

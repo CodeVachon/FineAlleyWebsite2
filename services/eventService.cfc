@@ -79,4 +79,34 @@ component output="false" displayname="" extends="baseService" {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return super.removeObject(this.getEvent(ARGUMENTS));
 	}
+
+
+	public models.event function addVenueToEvent() {
+		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+		var _event = this.getEvent(ARGUMENTS);
+
+		var _venueService = new services.venueService();
+		var _venue = _venueService.getVenue(ARGUMENTS);
+
+		if (!_event.hasVenue(_venue)) {
+			_event.setVenue(_venue);
+		}
+
+		return _event;
+	}
+
+
+	public models.event function addVenueToEventAndSave() {
+		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+		return super.saveObject(this.addVenueToEvent(ARGUMENTS));
+	}
+
+
+	public models.event function removeVenueFromEvent() {
+		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+		var _event = this.getEvent(ARGUMENTS);
+		var _venueService = new services.venueService();
+		var _venue = _venueService.getVenue(ARGUMENTS);
+		return super.saveObject(_event.removeVenue(_venue));
+	}
 }

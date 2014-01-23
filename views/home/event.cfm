@@ -8,6 +8,11 @@
 			<cfif REQUEST.security.checkPermission("isAdmin")>
 				<div class='btn-group btn-mini'>
 					<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn btn-default btn-xs'>Edit Event</a>
+					<cfif RC.event.hasVenue()>
+						<a href='/admin/removeVenueFromEvent/eventID/#RC.event.getID()#' class='btn btn-default btn-xs'>Remove Venue</a>
+					<cfelse>
+						<a href='/admin/addVenueToEvent/eventID/#RC.event.getID()#' class='btn btn-default btn-xs'>Add Venue</a>
+					</cfif>
 				</div>
 			</cfif>
 		</footer>

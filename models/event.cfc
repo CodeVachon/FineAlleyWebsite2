@@ -13,6 +13,8 @@ component extends="base" displayname="event" persistent="true" table="events" {
 	property name="body" type="string" length="25000";
 	property name="location" type="string" length="250";
 
+	property name="venue" fieldtype="many-to-one" cfc="venue" fkcolumn="venueId" cascade="all";
+
 
 	public function init(){
 		return super.init();
@@ -25,6 +27,8 @@ component extends="base" displayname="event" persistent="true" table="events" {
 		if (!structKeyExists(VARIABLES,'dateTime')) { VARIABLES.dateTime = now(); }
 		if (!structKeyExists(VARIABLES,'body')) { VARIABLES.body = javacast("null",""); }
 		if (!structKeyExists(VARIABLES,'location')) { VARIABLES.location = javacast("null",""); }
+
+		if (!structKeyExists(VARIABLES,'venue')) { VARIABLES.venue = javacast("null",""); }
 	}
 
 
