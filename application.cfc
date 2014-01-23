@@ -25,7 +25,8 @@ component extends="frameworkOne.framework" {
 		routes = [
 			{"/contact-us" = "/home/contactUs"},
 			{"/events" = "/home/listEvents"},
-			{"/event/:year/:month/:day/:title" = "/home/event/date/:year-:month-:day/title/:title"}
+			{"/event/:year/:month/:day/:title" = "/home/event/date/:year-:month-:day/title/:title"},
+			{"/venue/:encodedName" = "/home/venue/encodedName/:encodedName"}
 		]
 	};
 

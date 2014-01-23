@@ -1,7 +1,7 @@
 <cfoutput>
 	<div class='venue col-md-12'>
 		<header>
-			<h3>#RC.venue.getName()#</h3>
+			<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.venue.getName()#</a></h3>
 		</header>
 		#RC.venue.getDescription()#
 		<footer>

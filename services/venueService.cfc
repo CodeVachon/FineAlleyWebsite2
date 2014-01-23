@@ -19,6 +19,8 @@ component output="false" displayname="" extends="baseService" {
 
 		if (structKeyExists(ARGUMENTS,"venueId")) {
 			_venue = ORMExecuteQuery("SELECT DISTINCT o FROM venue o WHERE o.id=:id",{id=ARGUMENTS.venueId},true);
+		} else if (structKeyExists(ARGUMENTS,"encodedName")) {
+			_venue = ORMExecuteQuery("SELECT DISTINCT o FROM venue o WHERE o.encodedName=:encodedName",{encodedName=ARGUMENTS.encodedName},true);
 		} else if (structKeyExists(ARGUMENTS,"id")) {
 			_venue = ORMExecuteQuery("SELECT DISTINCT o FROM venue o WHERE o.id=:id",{id=ARGUMENTS.id},true);
 		}
@@ -44,6 +46,7 @@ component output="false" displayname="" extends="baseService" {
 	public models.venue function editVenue() {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		var _venue = super.setValuesInObject(this.getVenue(ARGUMENTS),ARGUMENTS);
+
 		return _venue;
 	}
 
