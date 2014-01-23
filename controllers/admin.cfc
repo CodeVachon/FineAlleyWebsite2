@@ -163,4 +163,31 @@ component output="false" displayname="admin"  {
 		}
 	}
 
+
+	public void function listVenues(required struct RC) {
+		REQUEST.template.setPageTitle("List Venues");
+		VARIABLES.fw.service("venueService.getVenues","venues");
+	}
+
+
+	public void function startEditVenue(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service("venueService.editVenueAndSave","venue");
+		} else if (structKeyExists(RC,"venueId")) {
+			VARIABLES.fw.service("venueService.getVenue","venue");
+		}
+	}
+	public void function editVenue(required struct RC) {
+		REQUEST.template.setPageTitle("Edit Venues");
+		REQUEST.template.addFile("/includes/js/formOptions.min.js");
+	}
+	public void function endEditVenue(required struct RC) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.redirect(action='admin.listVenues');
+		} else if (structKeyExists(RC,"venueId")) {
+			for (var property in RC.venue.getPropertyStruct()) {
+				RC[property] = RC.venue.getProperty(property);
+			}
+		}
+	}
 }
