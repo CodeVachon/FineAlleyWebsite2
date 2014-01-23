@@ -4,6 +4,7 @@
 
 <div class='upcomingEvents'>
 	<cfoutput>
+		<cfset RC.useVenueSummary = true />
 		<cfloop array="#RC.events#" index="RC.event">
 			#view('home/event')#
 		</cfloop>

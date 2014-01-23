@@ -1,3 +1,6 @@
+<cfscript>
+	param name="RC.useVenueSummary" default="false";
+</cfscript>
 <cfoutput>
 	<article class='event col-lg-6 col-md-12'>
 		<header><h3><a href='/event#RC.event.getURI()#'>#RC.event.getTitle()#</a></h3></header>
@@ -5,11 +8,16 @@
 		<footer>
 			<p>Date: #dateFormat(RC.event.getDateTime(),"MMM D, YYYY")# @ #timeFormat(RC.event.getDateTime(),"H:MM")#</p>
 			<cfif RC.event.hasVenue()>
-				<cfset RC.venue = RC.event.getVenue() >
-				#view("home/venue")#
+				<cfif RC.useVenueSummary>
+					<p>Venue: <a href='/venue/#RC.event.getVenue().getEncodedName()#'>#RC.event.getVenue().getName()#</a></p>
+				<cfelse>
+					<cfset RC.venue = RC.event.getVenue() >
+					#view("home/venue")#
+				</cfif>
 			<cfelseif len(RC.event.getLocation()) GT 0>
 				<p>Location: #RC.event.getLocation()#</p>
 			</cfif>
+
 			<cfif REQUEST.security.checkPermission("isAdmin")>
 				<div class='btn-group btn-mini'>
 					<a href='/admin/editEvent/eventID/#RC.event.getID()#' class='btn btn-default btn-xs'>Edit Event</a>

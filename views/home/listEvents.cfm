@@ -18,7 +18,13 @@
 				<tr>
 					<td><a href='/event#LOCAL.event.getURI()#'>#LOCAL.event.getTitle()#</a></td>
 					<td>#dateFormat(LOCAL.event.getDateTime(),"MMMM D, YYYY")#</td>
-					<td>#LOCAL.event.getLocation()#</td>
+					<td>
+						<cfif LOCAL.event.hasVenue()>
+							<a href='/venue/#LOCAL.event.getVenue().getEncodedName()#'>#LOCAL.event.getVenue().getName()#</a>
+						<cfelseif len(LOCAL.event.getLocation()) GT 0>
+							#LOCAL.event.getLocation()#
+						</cfif>
+					</td>
 				</tr>
 			</cfloop>
 		</tbody>
