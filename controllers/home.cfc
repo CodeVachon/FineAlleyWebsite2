@@ -26,6 +26,12 @@ component output="false" displayname="home"  {
 	}
 
 
+	public void function venue(required struct RC) {
+		REQUEST.template.setPageTitle("View Venue");
+		VARIABLES.fw.service("venueService.getVenue","venue");
+	}
+
+
 	public void function listEvents(required struct RC) {
 		REQUEST.template.setPageTitle("Upcoming Events");
 		RC.page = 1;
