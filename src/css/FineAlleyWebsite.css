@@ -11,7 +11,9 @@
   width: 25%;
 }
 .fb-titleblock .fb-title {
-  margin: 0.4em 0 0.4em 35%;
+  display: block;
+  margin: 0.4em 0 0.4em 33%;
+  line-height: 2em;
 }
 .cfdump_struct {
   color: #000;
@@ -33,6 +35,12 @@
 }
 .navbar-default {
   z-index: 10000;
+}
+footer .btn-group {
+  margin: 1em 0;
+}
+.event footer {
+  margin: 1em 0;
 }
 .event footer p {
   margin: 0;
