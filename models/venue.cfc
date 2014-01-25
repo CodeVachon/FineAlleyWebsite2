@@ -31,6 +31,7 @@ component extends="base" displayname="venue" persistent="true" table="venues" {
 		if (!structKeyExists(VARIABLES,'contactInfo')) { VARIABLES.contactInfo = javacast("null",""); }
 	}
 
+
 	public void function preInsert() hint="call before this being inserted" {
 		super.preUpdate();
 		VARIABLES.encodedName = urlEncodeValue(this.getName());
@@ -38,5 +39,14 @@ component extends="base" displayname="venue" persistent="true" table="venues" {
 	public void function preUpdate(Struct oldData) hint="call before this being updated" {
 		super.preUpdate(ARGUMENTS.oldData);
 		VARIABLES.encodedName = urlEncodeValue(this.getName());
+	}
+
+
+	public array function getEvents(boolean allEvents = true) {
+		if (ARGUMENTS.allEvents) {
+			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE v.id = :id ORDER BY e.dateTime",{id=this.getID()},false);
+		} else {
+			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE e.dateTime > :now() AND v.id = :id ORDER BY e.dateTime",{now=now(), id=this.getID()},false);
+		}
 	}
 }

@@ -11,8 +11,7 @@
 				<cfif RC.useVenueSummary>
 					<p>Venue: <a href='/venue/#RC.event.getVenue().getEncodedName()#'>#RC.event.getVenue().getName()#</a></p>
 				<cfelse>
-					<cfset RC.venue = RC.event.getVenue() >
-					#view("home/venue")#
+					<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.event.getVenue().getName()#</a></h3>
 				</cfif>
 			<cfelseif len(RC.event.getLocation()) GT 0>
 				<p>Location: #RC.event.getLocation()#</p>
