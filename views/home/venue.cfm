@@ -1,3 +1,10 @@
+<cfscript>
+	LOCAL.events = {
+		upcoming = RC.venue.getEvents(),
+		past = RC.venue.getEvents("past")
+	};
+	LOCAL.eventKeyOrder = ["Upcoming","Past"];
+</cfscript>
 <cfoutput>
 	<div class='venue col-md-12'>
 		<header>
@@ -5,9 +12,13 @@
 		</header>
 		#RC.venue.getDescription()#
 
-		<h4>Upcoming Events</h4>
-		<cfloop array="#RC.venue.getEvents()#" index="RC.event">
-			#view('home/event')#
+		<cfloop array="#LOCAL.eventKeyOrder#" index="LOCAL.key">
+			<cfif arrayLen(LOCAL.events[LOCAL.key]) GT 0>
+				<h4>#LOCAL.key# Events</h4>
+				<cfloop array="#LOCAL.events[LOCAL.key]#" index="RC.event">
+					<div class='row'>#view('home/event')#</div>
+				</cfloop>
+			</cfif>
 		</cfloop>
 
 		<footer>

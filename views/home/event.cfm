@@ -8,11 +8,7 @@
 		<footer>
 			<p>Date: #dateFormat(RC.event.getDateTime(),"MMM D, YYYY")# @ #timeFormat(RC.event.getDateTime(),"H:MM")#</p>
 			<cfif RC.event.hasVenue()>
-				<cfif RC.useVenueSummary>
-					<p>Venue: <a href='/venue/#RC.event.getVenue().getEncodedName()#'>#RC.event.getVenue().getName()#</a></p>
-				<cfelse>
-					<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.event.getVenue().getName()#</a></h3>
-				</cfif>
+				<p>Venue: <a href='/venue/#RC.event.getVenue().getEncodedName()#'>#RC.event.getVenue().getName()#</a></p>
 			<cfelseif len(RC.event.getLocation()) GT 0>
 				<p>Location: #RC.event.getLocation()#</p>
 			</cfif>

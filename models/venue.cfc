@@ -1,5 +1,5 @@
 /**
-*
+*apple inc
 * @file  /C/inetpub/wwwroot/finealley/FineAlleyWebsite2/models/venue.cfc
 * @author  
 * @description
@@ -42,11 +42,13 @@ component extends="base" displayname="venue" persistent="true" table="venues" {
 	}
 
 
-	public array function getEvents(boolean allEvents = true) {
-		if (ARGUMENTS.allEvents) {
+	public array function getEvents(string events = "upcoming") {
+		if (ARGUMENTS.events == "all") {
 			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE v.id = :id ORDER BY e.dateTime",{id=this.getID()},false);
+		} else if (ARGUMENTS.events == "past") {
+			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE e.dateTime < :now AND v.id = :id ORDER BY e.dateTime",{now=now(), id=this.getID()},false);
 		} else {
-			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE e.dateTime > :now() AND v.id = :id ORDER BY e.dateTime",{now=now(), id=this.getID()},false);
+			return ORMExecuteQuery("SELECT DISTINCT e FROM event e JOIN e.venue v WHERE e.dateTime > :now AND v.id = :id ORDER BY e.dateTime",{now=now(), id=this.getID()},false);
 		}
 	}
 }
