@@ -26,6 +26,7 @@ component extends="frameworkOne.framework" {
 			{"/contact-us" = "/home/contactUs"},
 			{"/events" = "/home/listEvents"},
 			{"/event/:year/:month/:day/:title" = "/home/event/date/:year-:month-:day/title/:title"},
+			{"/home/venue/venueId/:id" = "/home/venue/venueId/:id"},
 			{"/venue/:encodedName" = "/home/venue/encodedName/:encodedName"}
 		]
 	};

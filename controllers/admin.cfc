@@ -183,7 +183,8 @@ component output="false" displayname="admin"  {
 	}
 	public void function endEditVenue(required struct RC) {
 		if (structKeyExists(RC,"btnSave")) {
-			VARIABLES.fw.redirect(action='admin.listVenues');
+			RC.venueId = RC.venue.getID();
+			VARIABLES.fw.redirect(action='home.venue',append='venueId');
 		} else if (structKeyExists(RC,"venueId")) {
 			for (var property in RC.venue.getPropertyStruct()) {
 				RC[property] = RC.venue.getProperty(property);
