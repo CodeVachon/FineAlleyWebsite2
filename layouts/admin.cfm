@@ -1,6 +1,6 @@
 <div class='row'>
-	<div class='col-sm-9 pull-right'><cfoutput>#body#</cfoutput></div>
-	<div class='col-sm-3 pull-left'>
+	<div class='col-xs-12 col-sm-8 col-md-9 pull-right'><cfoutput>#body#</cfoutput></div>
+	<div class='col-xs-12 col-sm-4 col-md-3 pull-left'>
 		<ul class='well nav nav-pills nav-stacked'>
 			<li><a href='#buildURL('admin')#'>Admin</a></li>
 			<li><a href='#buildURL('admin.websiteSettings')#'>Manage Website Settings</a></li>
