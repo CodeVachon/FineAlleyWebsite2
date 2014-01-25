@@ -24,11 +24,17 @@ component output="false" displayname="home"  {
 		REQUEST.template.setPageTitle("View Event");
 		VARIABLES.fw.service("eventService.getEvent","event");
 	}
+	public void function endEvent(required struct RC) {
+		REQUEST.template.setPageTitle("Event #dateFormat(RC.event.getDateTime(),"MMM d, yyyy")# - #RC.event.getTitle()#");
+	}
 
 
 	public void function venue(required struct RC) {
 		REQUEST.template.setPageTitle("View Venue");
 		VARIABLES.fw.service("venueService.getVenue","venue");
+	}
+	public void function endVenue(required struct RC) {
+		REQUEST.template.setPageTitle("Venue - #RC.venue.getName()#");
 	}
 
 
