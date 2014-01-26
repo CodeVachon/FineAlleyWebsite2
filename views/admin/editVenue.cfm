@@ -12,6 +12,10 @@
 			<textarea name="description" data-wysiwyg='' class="form-control">#((structKeyExists(RC,"description"))?RC.description:"")#</textarea>
 		</div>
 		<div class='form-group'>
+			<label for="facebookID">Facebook ID</label>
+			<input type='text' name='facebookID' class="form-control" value="#((structKeyExists(RC,"facebookID"))?RC.facebookID:"")#" />
+		</div>
+		<div class='form-group'>
 			<label for="isDeleted">Remove / Delete</label>
 			<select name="isDeleted"  class="form-control">
 				<option value="false"#((structKeyExists(RC,"isDeleted") && !RC.isDeleted)?" selected='selected'":"")#>No</option>

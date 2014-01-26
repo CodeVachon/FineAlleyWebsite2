@@ -1,5 +1,5 @@
 /**
-*apple inc
+*
 * @file  /C/inetpub/wwwroot/finealley/FineAlleyWebsite2/models/venue.cfc
 * @author  
 * @description
@@ -15,6 +15,7 @@ component extends="base" displayname="venue" persistent="true" table="venues" {
 
 	property name="contactInfo" type="array" fieldtype="one-to-many" cfc="contactInfo" fkcolumn="venueId" cascade="all";
 
+	property name="facebookID" type="string";
 
 	public function init(){
 		return super.init();
@@ -27,6 +28,7 @@ component extends="base" displayname="venue" persistent="true" table="venues" {
 		if (!structKeyExists(VARIABLES,'encodedName')) { VARIABLES.encodedName = javacast("null",""); }
 		if (!structKeyExists(VARIABLES,'description')) { VARIABLES.description = ""; }
 		if (!structKeyExists(VARIABLES,'banner')) { VARIABLES.banner = javacast("null",""); }
+		if (!structKeyExists(VARIABLES,'facebookID')) { VARIABLES.banner = javacast("null",""); }
 
 		if (!structKeyExists(VARIABLES,'contactInfo')) { VARIABLES.contactInfo = javacast("null",""); }
 	}
