@@ -38,11 +38,7 @@ $(document).ready(function() {
 					if ($(this).attr("data-wysiwyg") == "basic") {
 						_options.plugins = "link";
 						_options.statusbar = false;
-						_options.toolbar = "bold italic underline | link unlink";
-					} else {
-						_options.plugins = "link, code";
-						_options.statusbar = false;
-						_options.toolbar = "code | undo redo | bold italic underline strikethrough | link unlink | blockquote | bullist numlist ";
+						_options.toolbar = "bold italic underline | link unlink ";
 					}
 					$(this).tinymce(_options);
 				});

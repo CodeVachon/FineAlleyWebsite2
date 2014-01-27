@@ -2,7 +2,7 @@
 	param name="RC.useVenueSummary" default="false";
 </cfscript>
 <cfoutput>
-	<article class='event col-lg-6 col-md-12'>
+	<article class='event col-md-12 col-lg-6'>
 		<header><h3><a href='/event#RC.event.getURI()#'>#RC.event.getTitle()#</a></h3></header>
 		#RC.event.getBody()#
 		<footer>
