@@ -17,6 +17,8 @@ component output="false" displayname="home"  {
 		RC.page = 1;
 		RC.itemsPerPage = 4;
 		VARIABLES.fw.service("eventService.getEvents","events");
+		RC.cononicalURI = "/";
+		REQUEST.template.setDescription("Get more information on Fine Alley and Upcoming Events!");
 	}
 
 
@@ -26,6 +28,8 @@ component output="false" displayname="home"  {
 	}
 	public void function endEvent(required struct RC) {
 		REQUEST.template.setPageTitle("Event #dateFormat(RC.event.getDateTime(),"MMM d, yyyy")# - #RC.event.getTitle()#");
+		RC.cononicalURI = "/event" &  RC.event.getURI();
+		REQUEST.template.setDescription("Get Information about our #RC.event.getTitle()# event on #dateFormat(RC.event.getDateTime(),"MMMM D, YYYY")#");
 	}
 
 
@@ -35,14 +39,18 @@ component output="false" displayname="home"  {
 	}
 	public void function endVenue(required struct RC) {
 		REQUEST.template.setPageTitle("Venue - #RC.venue.getName()#");
+		RC.cononicalURI = "/venue/" &  RC.venue.getEncodedName();
+		REQUEST.template.setDescription(reReplaceNoCase("Get more information about #RC.venue.getName()#","<[^>]+>","","ALL"));
 	}
 
 
 	public void function listEvents(required struct RC) {
 		REQUEST.template.setPageTitle("Upcoming Events");
+		RC.cononicalURI = "/events";
 		RC.page = 1;
 		RC.itemsPerPage = 10;
 		VARIABLES.fw.service("eventService.getEvents","events");
+		REQUEST.template.setDescription("Check out our upcoming events");
 	}
 
 
@@ -64,6 +72,8 @@ component output="false" displayname="home"  {
 	public void function contactUs(required struct RC) {
 		REQUEST.template.addFile("/includes/js/formOptions.min.js");
 		REQUEST.template.setPageTitle("Contact Us");
+		REQUEST.template.setDescription("Contact Fine Alley about upcoming events, or request a few songs for us to play");
+		RC.cononicalURI = "/contact-us";
 	}
 	public void function endContactUs(required struct RC) {}
 }

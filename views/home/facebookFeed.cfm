@@ -12,7 +12,7 @@
 		<header>
 			<img src="#LOCAL.facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
 			<div class='fb-titleblock'>
-				<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
+				<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&amp;height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
 				<a href='#LOCAL.facebookData.link#' class='fb-title'>#LOCAL.facebookData.name#</a>
 			</div>
 		</header>

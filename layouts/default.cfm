@@ -1,10 +1,14 @@
 <cfscript>
 	param name="RC.layoutSideBars" default='true';
+	param name="RC.cononicalURI" default='#CGI.PATH_INFO#';
+
 </cfscript>
 <cfcontent reset="true" type="text/html" /><cfprocessingdirective suppressWhiteSpace="true"><!doctype html>
 <html lang="en">
 	<head>
 		<title><cfoutput><cfif len(REQUEST.template.getPageTitle()) gt 0>#REQUEST.template.getPageTitle()# | </cfif>#REQUEST.template.getSiteName()#</cfoutput></title>
+		<cfoutput><link rel="canonical" href="http://#CGI.HTTP_HOST##lcase(reReplace(RC.cononicalURI,"/$","","one"))#" />
+		</cfoutput>
 		<cfscript> 
 
 			if (len(REQUEST.template.getDescription()) > 0) { writeOutput("<meta name='description' content='#REQUEST.template.getDescription()#' />" & chr(10) & chr(9) & chr(9)); }
@@ -76,10 +80,10 @@
 							#body#
 						</div><!--- close .column --->
 						<div class='col-xs-12 col-md-4 col-sm-5'>
-							<aside class='facebook col-sm-12'>
+							<div class='facebook col-sm-12'>
 								<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
 								#view('home/facebookFeed')#
-							</aside>
+							</div>
 						</div>
 					</div><!--- close .row --->
 				<cfelse>
