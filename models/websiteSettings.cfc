@@ -22,6 +22,7 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 
 	// Google
 	property name="Google_gaCode" type="string";
+	property name="Google_APICode" type="string";
 
 	// Mail Settings
 	property name="Mail_SMTPServer" type="string";
@@ -55,6 +56,7 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 
 		// Google
 		if (!structKeyExists(VARIABLES,"Google_gaCode")) { VARIABLES["Google_gaCode"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"Google_APICode")) { VARIABLES["Google_APICode"] = javaCast("null",""); }
 
 		// Mail
 		if (!structKeyExists(VARIABLES,"Mail_SMTPServer")) { VARIABLES["Mail_SMTPServer"] = javaCast("null",""); }

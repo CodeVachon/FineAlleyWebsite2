@@ -34,6 +34,10 @@
 			<label for="Google_gaCode">Google Analyatics Code</label>
 			<input type='text' name='Google_gaCode' class="form-control" value="#((structKeyExists(RC,"Google_gaCode"))?RC.Google_gaCode:"")#" placeholder='' />
 		</div>
+		<div class='form-group'>
+			<label for="Google_APICode">Google API Code</label>
+			<input type='text' name='Google_APICode' class="form-control" value="#((structKeyExists(RC,"Google_APICode"))?RC.Google_APICode:"")#" placeholder='' />
+		</div>
 
 
 		<div class='form-group'>
