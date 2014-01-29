@@ -15,7 +15,7 @@
 				<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
 				<a href='#LOCAL.facebookData.link#' class='fb-title'>#LOCAL.facebookData.name#</a>
 			</div>
-		<header>
+		</header>
 		<div>
 			<dl>
 				<dt>Band Members</dt>

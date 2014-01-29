@@ -7,17 +7,94 @@
 </cfscript>
 <cfoutput>
 	<div class='venue col-md-12'>
-		<header>
-			<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.venue.getName()#</a></h3>
-		</header>
-		#RC.venue.getDescription()#
+		<cfif APPLICATION.websiteSettings.hasAllFacebookInfo() AND (len(RC.venue.getFacebookID()) GT 0)>
+			<cfscript>
+				LOCAL._appID = APPLICATION.websiteSettings.getFB_appID();
+				LOCAL._appSecrect = APPLICATION.websiteSettings.getFB_appSecret();
+				LOCAL._pageID = RC.venue.getFacebookID();
+				LOCAL._accessToken = "#LOCAL._appID#|#LOCAL._appSecrect#";
+				LOCAL.facebookGraphAPI = new services.FacebookGraphAPI().init(LOCAL._accessToken,LOCAL._appID);
+				LOCAL.facebookData = LOCAL.facebookGraphAPI.getObject(id=LOCAL._pageID);
+
+				//writeDump(LOCAL.facebookData);
+			</cfscript>
+
+			<div class='row'>
+				<header>
+					<img src="#LOCAL.facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
+					<div class='fb-titleblock'>
+						<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
+						<a href='#LOCAL.facebookData.link#' class='fb-title' target="_blank">#LOCAL.facebookData.name#</a>
+					</div>
+				<header>
+
+				<div class='row'>
+					<div class='col-xs-12'>
+						<dl>
+							<dt>About</dt>
+							<dd>#LOCAL.facebookData.about#</dd>
+							<dt>Category</dt>
+							<dd>#LOCAL.facebookData.category#</dd>
+						</dl>
+					</div>
+				</div><!-- close .row -->
+				<div class='row'>
+					<cfif structKeyExists(LOCAL.facebookData, "location")>
+						<div class='col-sm-7'>
+							<h4>Address</h4>
+							<address>
+								#LOCAL.facebookData.location.street#<br />
+								#LOCAL.facebookData.location.city#, #LOCAL.facebookData.location.state#<br />
+								#LOCAL.facebookData.location.country#<br />
+								#LOCAL.facebookData.location.zip#
+							</address>
+							<cfif structKeyExists(LOCAL.facebookData, "phone")>
+								<h4>Phone</h4>
+								<p>#LOCAL.facebookData.phone#</p>
+							</cfif>
+						</div>
+					</cfif>
+					<cfif structKeyExists(LOCAL.facebookData, "hours")>
+						<div class='col-sm-5'>
+							<h4>Hours</h4>
+							<table class='table table-condensed'>
+								<thead>
+									<tr>
+										<th></th>
+										<th>Open</th>
+										<th>Close</th>
+									</tr>
+								</thead>
+								<tfoot>
+								</tfoot>
+								<tbody>
+									<cfloop list="Mon,Tue,Wed,Thur,Fri,Sat,Sun" index="LOCAL.dayOfWeek">
+										<cfif structKeyExists(LOCAL.facebookData.hours, "#LOCAL.dayOfWeek#_1_open") AND structKeyExists(LOCAL.facebookData.hours, "#LOCAL.dayOfWeek#_1_close")>
+											<tr><th>#LOCAL.dayOfWeek#</th><td>#LOCAL.facebookData.hours["#LOCAL.dayOfWeek#_1_open"]#</td><td>#LOCAL.facebookData.hours["#LOCAL.dayOfWeek#_1_close"]#</td></tr>
+										</cfif>
+									</cfloop>
+								</tbody>
+							</table>
+						</div>
+					</cfif>
+				</div><!-- close .row -->
+				<p class='text-right'><small class='text-muted'>proceeding information from <a href='http://www.facebook.com' target="_blank">facebook.com</a></small></p>
+			</div><!-- close .row -->
+		<cfelse>
+			<header>
+				<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.venue.getName()#</a></h3>
+			</header>
+			#RC.venue.getDescription()#
+		</cfif>
 
 		<cfloop array="#LOCAL.eventKeyOrder#" index="LOCAL.key">
 			<cfif arrayLen(LOCAL.events[LOCAL.key]) GT 0>
-				<h4>#LOCAL.key# Events</h4>
-				<cfloop array="#LOCAL.events[LOCAL.key]#" index="RC.event">
-					<div class='row'>#view('home/event')#</div>
-				</cfloop>
+				<div class='row'>
+					<h4>#LOCAL.key# Events</h4>
+					<cfloop array="#LOCAL.events[LOCAL.key]#" index="RC.event">
+						#view('home/event')#
+					</cfloop>
+				</div>
 			</cfif>
 		</cfloop>
 

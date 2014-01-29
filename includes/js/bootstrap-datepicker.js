@@ -410,7 +410,7 @@
 		},
 
 		place: function(){
-						if(this.isInline) return;
+			if(this.isInline) return;
 			var calendarWidth = this.picker.outerWidth(),
 				calendarHeight = this.picker.outerHeight(),
 				visualPadding = 10,
