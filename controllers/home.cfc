@@ -35,6 +35,9 @@ component output="false" displayname="home"  {
 
 	public void function venue(required struct RC) {
 		REQUEST.template.setPageTitle("View Venue");
+		REQUEST.template.addFile("https://maps.googleapis.com/maps/api/js?key=#APPLICATION.websiteSettings.getGoogle_APICode()#&amp;sensor=false");
+		REQUEST.template.addFile("/includes/js/gmap3.min.js");
+		REQUEST.template.addFile("/includes/js/home.venue.min.js");
 		VARIABLES.fw.service("venueService.getVenue","venue");
 	}
 	public void function endVenue(required struct RC) {

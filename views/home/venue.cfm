@@ -40,7 +40,7 @@
 				</div><!-- close .row -->
 				<div class='row'>
 					<cfif structKeyExists(LOCAL.facebookData, "location")>
-						<div class='col-sm-7'>
+						<div class='col-sm-12 col-md-3'>
 							<h4>Address</h4>
 							<address>
 								#LOCAL.facebookData.location.street#<br />
@@ -53,9 +53,13 @@
 								<p>#LOCAL.facebookData.phone#</p>
 							</cfif>
 						</div>
+						<div class='col-sm-12 col-md-5'>
+							<h4>Map</h4>
+							<div class='venue-map' data-address='#RC.venue.getName()# #LOCAL.facebookData.location.street# #LOCAL.facebookData.location.city#, #LOCAL.facebookData.location.state# #LOCAL.facebookData.location.country#'></div>
+						</div>
 					</cfif>
 					<cfif structKeyExists(LOCAL.facebookData, "hours")>
-						<div class='col-sm-5'>
+						<div class='col-sm-6 col-md-4'>
 							<h4>Hours</h4>
 							<table class='table table-condensed'>
 								<thead>

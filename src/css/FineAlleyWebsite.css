@@ -50,6 +50,12 @@ footer .btn-group {
 .upcomingEvents .event:nth-child(odd) {
   clear: both;
 }
+.venue-map {
+  border: 2px #222222 solid;
+  border-radius: 1em;
+  overflow: hidden;
+  min-height: 200px;
+}
 /*!
  * Datepicker for Bootstrap
  *
