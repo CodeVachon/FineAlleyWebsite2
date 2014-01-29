@@ -81,9 +81,7 @@
 				<p class='text-right'><small class='text-muted'>proceeding information from <a href='http://www.facebook.com' target="_blank">facebook.com</a></small></p>
 			</div><!-- close .row -->
 		<cfelse>
-			<header>
-				<h3><a href='/venue/#RC.venue.getEncodedName()#'>#RC.venue.getName()#</a></h3>
-			</header>
+			<header><a href='/venue/#RC.venue.getEncodedName()#'>#RC.venue.getName()#</a></header>
 			#RC.venue.getDescription()#
 		</cfif>
 

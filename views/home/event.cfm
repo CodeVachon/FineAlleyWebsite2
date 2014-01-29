@@ -3,7 +3,7 @@
 </cfscript>
 <cfoutput>
 	<article class='event col-lg-6 col-md-12'>
-		<header><h3><a href='/event#RC.event.getURI()#'>#RC.event.getTitle()#</a></h3></header>
+		<header><a href='/event#RC.event.getURI()#'>#RC.event.getTitle()#</a></header>
 		#RC.event.getBody()#
 		<footer>
 			<p>Date: #dateFormat(RC.event.getDateTime(),"MMM D, YYYY")# @ #timeFormat(RC.event.getDateTime(),"H:MM")#</p>
