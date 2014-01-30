@@ -73,7 +73,10 @@
 					</div>
 				</nav>
 
-
+				<header class='visible-print'>
+					<h1>#REQUEST.template.getSiteName()#</h1>
+					<p>#REQUEST.template.getDescription()#</p>
+				</header>
 				<cfif RC.layoutSideBars>
 					<div class='row'>
 						<div class='col-xs-12 col-md-8 col-sm-7'>
