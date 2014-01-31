@@ -86,6 +86,8 @@
 							<div class='facebook col-sm-12'>
 								<h3>#REQUEST.template.getSiteName()# on Facebook</h3>
 								#view('home/facebookFeed')#
+								<h3>#REQUEST.template.getSiteName()# on Twitter</h3>
+								#view('home/twitterFeed')#
 							</div>
 						</div>
 					</div><!--- close .row --->
