@@ -26,7 +26,9 @@
 				<dd>#LOCAL.facebookData.hometown#</dd>
 			</dl>
 		</div>
-		<footer></footer>
+		<footer>
+			<cfif structKeyExists(LOCAL.facebookData, "likes")><span class='label label-primary'>#LOCAL.facebookData.likes# Likes</span></cfif>
+		</footer>
 	</cfoutput>
 <cfelseif REQUEST.security.checkPermission("isAdmin")>
 	<cfoutput>
