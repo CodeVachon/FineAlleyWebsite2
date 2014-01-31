@@ -76,7 +76,9 @@ component extends="frameworkOne.framework" {
 		REQUEST.security = new services.security();
 
 		REQUEST.template.setSiteName(APPLICATION.websiteSettings.getSiteName());
-		REQUEST.template.addFile('//code.jquery.com/jquery-1.10.1.min.js','//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js');
+		REQUEST.template.addFile('//code.jquery.com/jquery-1.10.1.min.js');
+		REQUEST.template.addFile('//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js');
+		REQUEST.template.addFile('/includes/js/twitter.widgets.min.js');
 		REQUEST.template.addFile('/includes/css/FineAlleyWebsite.min.css');
 		REQUEST.template.addFile('/favicon.ico');
 
