@@ -16,4 +16,3 @@ Grunt - http://gruntjs.com/
 Twitter Bootstrap 3 - http://getbootstrap.com/  
 TimePicker - https://github.com/jdewit/bootstrap-timepicker  
 DatePicker - http://eternicode.github.io/bootstrap-datepicker/  
-

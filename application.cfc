@@ -55,6 +55,10 @@ component extends="frameworkOne.framework" {
 	}
 
 
+	public void function setupApplication() {
+	}
+
+
 	public void function setupRequest() {
 		if (isFrameworkReloadRequest() || !structKeyExists(APPLICATION,"websiteSettings")) {
 			ORMClearSession();
