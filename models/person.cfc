@@ -35,9 +35,9 @@ component output="false" displayname="" extends="base" persistent="true" table="
 	public struct function validate() {
 		var _validationErrors = super.validate();
 
-		if (len(VARIABLES["firstName"]) == 0) { _validationErrors["firstName"] = "invalid lenth for First Name"; }
-		if (len(VARIABLES["lastName"]) == 0) { _validationErrors["lastName"] = "invalid lenth for Last Name"; }
-		if (len(VARIABLES["username"]) == 0) { _validationErrors["username"] = "invalid lenth for User Name"; }
+		if (!structKeyExists(VARIABLES,"firstName") || (len(VARIABLES["firstName"]) == 0)) { _validationErrors["firstName"] = "invalid lenth for First Name"; }
+		if (!structKeyExists(VARIABLES,"lastName") || (len(VARIABLES["lastName"]) == 0)) { _validationErrors["lastName"] = "invalid lenth for Last Name"; }
+		if (!structKeyExists(VARIABLES,"username") || (len(VARIABLES["username"]) == 0)) { _validationErrors["username"] = "invalid lenth for User Name"; }
 
 		return _validationErrors;
 	}
