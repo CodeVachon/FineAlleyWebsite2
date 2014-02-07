@@ -35,7 +35,18 @@
 		</div>
 		<div class='fb-wall'>
 			<cfloop array="#LOCAL.facebookData.feed.data#" index="LOCAL.feedData">
-				<cfdump var="#LOCAL.feedData#">
+				<article>
+					<p>#LOCAL.feedData.created_time#</p>
+					<cfif structKeyExists(LOCAL.feedData, "picture")>
+						<a href='#LOCAL.feedData.link#'>
+							<img src='#LOCAL.feedData.picture#' class='img-responsive img-thumbnail' />
+						</a>
+					</cfif>
+					<cfif structKeyExists(LOCAL.feedData, "message")>
+						<p>#LOCAL.feedData.message#</p>
+					</cfif>
+				</article>
+				<!---  cfdump var="#LOCAL.feedData#" --->
 			</cfloop>
 		</div>
 		<footer>
