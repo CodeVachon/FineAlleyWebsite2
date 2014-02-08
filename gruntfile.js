@@ -197,6 +197,13 @@ module.exports = function(grunt) {
 		grunt.log.subhead('buildLess');
 		grunt.log.writeln('Compiles, Lints and Minifies all LESS files in the SRC');
 		grunt.log.writeln('folder.  Moves the Resulting CSS Files to the INCLUDES Folder');
+		grunt.log.subhead('buildDist');
+		grunt.log.writeln('Copy Files for Distribution Version of Site and Makes a Git');
+		grunt.log.writeln('Commit of those Changes');
+		grunt.log.subhead('deploy');
+		grunt.log.writeln('Deploys All Files in the Dest Folder to the Live Environment');
+		grunt.log.subhead('buildAndDeploy');
+		grunt.log.writeln('Runs the Build and Deploy Tasks');
 	});
 	grunt.registerTask('buildJS', ['jshint:build','uglify:build']);
 	grunt.registerTask('checkJS', ['jshint:build']);
