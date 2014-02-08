@@ -83,5 +83,6 @@ component output="false" displayname="home"  {
 
 	public void function facebookFeed(required struct RC) {
 		RC.layoutSideBars = false;
+		REQUEST.template.setPageTitle("Fine Alley on Facebook");
 	}
 }
