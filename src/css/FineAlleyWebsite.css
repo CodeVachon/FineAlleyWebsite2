@@ -15,6 +15,29 @@
   margin: 0.4em 0 0.4em 33%;
   line-height: 2em;
 }
+.fb-wall {
+  max-height: 250px;
+  overflow: auto;
+  border: 1px #222222 solid;
+}
+.fb-wall article {
+  margin: 0;
+  padding: 1em;
+}
+.fb-wall article header {
+  background-color: #333333;
+  margin: 0 -15px 1em -15px;
+}
+.fb-wall article header p {
+  margin: 0.5em 0;
+}
+.fb-wall article section .comment {
+  margin: 0 1em;
+}
+.fb-wall article section .comment header {
+  color: #888888;
+  border-radius: 0.5em;
+}
 .cfdump_udf,
 .cfdump_cfc,
 .cfdump_struct {

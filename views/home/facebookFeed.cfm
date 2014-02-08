@@ -54,17 +54,17 @@
 		<div class='fb-wall'>
 			<cfloop array="#LOCAL.facebookData.feed.data#" index="LOCAL.feedData">
 				<article>
-					<header>
-						<p>#LOCAL.feedData.from.name#</p>
-						<p>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMMM D, YYYY")#</p>
+					<header class='row'>
+						<p class='col-xs-8'>#LOCAL.feedData.from.name#</p>
+						<p class='col-xs-4 text-right'>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</p>
 					</header>
+					<cfif structKeyExists(LOCAL.feedData, "story")>
+						<p>#LOCAL.feedData.story#</p>
+					</cfif>
 					<cfif structKeyExists(LOCAL.feedData, "full_picture")>
 						<a href='#LOCAL.feedData.link#'>
 							<img src='#LOCAL.feedData.full_picture#' class='img-responsive img-thumbnail' />
 						</a>
-					</cfif>
-					<cfif structKeyExists(LOCAL.feedData, "story")>
-						<p>#LOCAL.feedData.story#</p>
 					</cfif>
 					<cfif structKeyExists(LOCAL.feedData, "message")>
 						<p>#LOCAL.feedData.message#</p>
@@ -72,18 +72,22 @@
 					<footer>
 						<cfif structKeyExists(LOCAL.feedData, "likes")>
 							<cfset LOCAL.likes = arrayLen(LOCAL.feedData.likes.data) />
-							<p>#LOCAL.likes# Like<cfif LOCAL.likes NEQ 1>s</cfif></p>
+							<span class='label label-primary pull-right'>#LOCAL.likes# Like<cfif LOCAL.likes NEQ 1>s</cfif></span>
 						</cfif>
 
 						<cfif structKeyExists(LOCAL.feedData, "comments")>
-							<p>Comments</p>
-							<cfloop array="#LOCAL.feedData.comments.data#" index="LOCAL.comment">
-								<div class='comment'>
-									<p>#LOCAL.comment.from.name#</p>
-									<p>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMMM D, YYYY")#</p>
-									<p>#LOCAL.comment.message#</p>
-								</div>
-							</cfloop>
+							<section class='comments'>
+								<p>Comments</p>
+								<cfloop array="#LOCAL.feedData.comments.data#" index="LOCAL.comment">
+									<div class='comment'>
+										<header class='row'>
+											<p class='col-xs-8'>#LOCAL.comment.from.name#</p>
+											<p class='col-xs-4 text-right'>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
+										</header>
+										<p>#LOCAL.comment.message#</p>
+									</div>
+								</cfloop>
+							</section>
 						</cfif>
 					</footer>
 				</article>

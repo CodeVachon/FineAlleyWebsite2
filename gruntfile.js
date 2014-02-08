@@ -108,7 +108,7 @@ module.exports = function(grunt) {
 			}, // close .jsCompile
 			cssCompile: {
 				files: ['src/css/*.css','!src/css/*.min.css'],
-				tasks: ['csslint:file','cssmin:file'],
+				tasks: ['cssmin:file'],//'csslint:file',
 				options: {
 					spawn: false,
 					nospawn: true
@@ -164,25 +164,25 @@ module.exports = function(grunt) {
 	grunt.registerTask('buildLess', ['less:build','csslint:build','cssmin:build']);
 
 	grunt.event.on("watch", function(action, filepath, target) {
-		var srcFolder = "src\\";
-		var destFolder = "includes\\";
+		var srcFolder = "src/";
+		var destFolder = "includes/";
 		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
 		if (target == 'jsCompile') {
 			grunt.config('jshint.file.src', filepath);
 			grunt.config(['uglify', 'file', 'src'], filepath);
 			grunt.config(['uglify', 'file', 'dest'], filepath.replace(srcFolder,destFolder).replace(/(\.js)$/gi,'.min.js'));
 		} else if (target == 'cssCompile') {
-			grunt.config('csslint.file.src', filepath);
+			//grunt.config('csslint.file.src', filepath);
 			grunt.config(['cssmin', 'file', 'src'], filepath);
 			grunt.config(['cssmin', 'file', 'dest'], filepath.replace(srcFolder,destFolder).replace(/(\.css)$/gi,'.min.css'));
 		} else if (target == 'lessCompile') {
-			var cssFileName = filepath.replace("\\less\\","\\css\\").replace(/(\.less)$/gi,'.css');
+			var cssFileName = filepath.replace("/less/","/css/").replace(/(\.less)$/gi,'.css');
 			grunt.log.writeln('CSS File:' + cssFileName);
-			grunt.config(['less', 'file', 'src'], srcFolder + "\\less\\bootstrap.less");
-			grunt.config(['less', 'file', 'dest'], srcFolder + "\\css\\<%= pkg.name %>.css");
-			//grunt.config('csslint.file.src', srcFolder + "\\css\\<%= pkg.name %>.css");
-			grunt.config(['cssmin', 'file', 'src'], srcFolder + "\\css\\<%= pkg.name %>.css");
-			grunt.config(['cssmin', 'file', 'dest'], destFolder + "\\css\\<%= pkg.name %>.min.css");
+			grunt.config(['less', 'file', 'src'], srcFolder + "/less/bootstrap.less");
+			grunt.config(['less', 'file', 'dest'], srcFolder + "/css/<%= pkg.name %>.css");
+			//grunt.config('csslint.file.src', srcFolder + "/css/<%= pkg.name %>.css");
+			grunt.config(['cssmin', 'file', 'src'], srcFolder + "/css/<%= pkg.name %>.css");
+			grunt.config(['cssmin', 'file', 'dest'], destFolder + "/css/<%= pkg.name %>.min.css");
 		} // close if target...
 	}); // close grunt.event.on("watch")
 }; // close module.exports

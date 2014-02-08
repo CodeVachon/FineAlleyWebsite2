@@ -60,6 +60,33 @@
 		line-height: 2em;
 	}
 }
+.fb-wall {
+	max-height: 250px;
+	overflow: auto;
+	border: 1px @navbar-default-border solid;
+
+	article {
+		margin: 0;
+		padding: 1em;
+
+		header {
+			background-color: @navbar-default-bg;
+			margin: 0 -15px 1em -15px;
+			p { margin: 0.5em 0; }
+		}
+
+		section {
+			.comment {
+				margin: 0 1em;
+				header { 
+					color: darken(@text-color, 40%); 
+					border-radius: 0.5em;
+				}
+			}
+		}
+	}
+}
+
 
 .cfdump_udf,
 .cfdump_cfc,
