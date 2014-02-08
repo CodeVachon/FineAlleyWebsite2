@@ -79,4 +79,9 @@ component output="false" displayname="home"  {
 		RC.cononicalURI = "/contact-us";
 	}
 	public void function endContactUs(required struct RC) {}
+
+
+	public void function facebookFeed(required struct RC) {
+		RC.layoutSideBars = false;
+	}
 }

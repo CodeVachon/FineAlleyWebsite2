@@ -1,4 +1,3 @@
-
 <cfif APPLICATION.websiteSettings.hasAllFacebookInfo()>
 	<cfscript>
 		LOCAL._appID = APPLICATION.websiteSettings.getFB_appID();
@@ -10,9 +9,28 @@
 
 		LOCAL.facebookData = LOCAL.facebookGraphAPI.getObject(
 			id=LOCAL._pageID,
-			fields="feed.limit(5),cover,picture,bio,name,band_members,band_interests,hometown,genre,likes,link"
+			fields="feed.limit(5).fields(from,full_picture,message,link,comments,likes,story),cover,picture,bio,name,band_members,band_interests,hometown,genre,likes,link"
 		);
 
+		
+
+		function createDateTimeFromFBTimeStamp(required string timestamp) {
+			var regEx_timestamp = "(\d{2,4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})(\+\d{4})";
+			var dateParts = {
+				year = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\1", "one"),
+				month = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\2", "one"),
+				day = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\3", "one"),
+				hour = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\4", "one"),
+				min = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\5", "one"),
+				sec = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\6", "one"),
+				offset = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\7", "one")
+			};
+
+			var localTimeOffset = -5;
+
+			var cf_dateTime = createDateTime(dateParts.year,dateParts.month,dateParts.day,(dateParts.hour+localTimeOffset),dateParts.min,dateParts.sec);
+			return cf_dateTime;
+		}
 		//writeDump(LOCAL.moreFacebookData);
 	</cfscript>
 	<cfoutput>
@@ -36,17 +54,39 @@
 		<div class='fb-wall'>
 			<cfloop array="#LOCAL.facebookData.feed.data#" index="LOCAL.feedData">
 				<article>
-					<p>#LOCAL.feedData.created_time#</p>
-					<cfif structKeyExists(LOCAL.feedData, "picture")>
+					<header>
+						<p>#LOCAL.feedData.from.name#</p>
+						<p>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMMM D, YYYY")#</p>
+					</header>
+					<cfif structKeyExists(LOCAL.feedData, "full_picture")>
 						<a href='#LOCAL.feedData.link#'>
-							<img src='#LOCAL.feedData.picture#' class='img-responsive img-thumbnail' />
+							<img src='#LOCAL.feedData.full_picture#' class='img-responsive img-thumbnail' />
 						</a>
+					</cfif>
+					<cfif structKeyExists(LOCAL.feedData, "story")>
+						<p>#LOCAL.feedData.story#</p>
 					</cfif>
 					<cfif structKeyExists(LOCAL.feedData, "message")>
 						<p>#LOCAL.feedData.message#</p>
 					</cfif>
+					<footer>
+						<cfif structKeyExists(LOCAL.feedData, "likes")>
+							<cfset LOCAL.likes = arrayLen(LOCAL.feedData.likes.data) />
+							<p>#LOCAL.likes# Like<cfif LOCAL.likes NEQ 1>s</cfif></p>
+						</cfif>
+
+						<cfif structKeyExists(LOCAL.feedData, "comments")>
+							<p>Comments</p>
+							<cfloop array="#LOCAL.feedData.comments.data#" index="LOCAL.comment">
+								<div class='comment'>
+									<p>#LOCAL.comment.from.name#</p>
+									<p>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMMM D, YYYY")#</p>
+									<p>#LOCAL.comment.message#</p>
+								</div>
+							</cfloop>
+						</cfif>
+					</footer>
 				</article>
-				<!---  cfdump var="#LOCAL.feedData#" --->
 			</cfloop>
 		</div>
 		<footer>
