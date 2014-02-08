@@ -154,7 +154,8 @@ module.exports = function(grunt) {
 		gitcommit: {
 			dist: {
 				options: {
-					message: 'Distribution Changes'
+					message: 'Distribution Changes',
+					ignoreEmpty: true // dont fail on no changes
 				},
 				files: {
 					src: ['dest/**']
