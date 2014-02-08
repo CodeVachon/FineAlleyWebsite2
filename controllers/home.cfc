@@ -52,7 +52,8 @@ component output="false" displayname="home"  {
 		RC.cononicalURI = "/events";
 		RC.page = 1;
 		RC.itemsPerPage = 10;
-		VARIABLES.fw.service("eventService.getEvents","events");
+		VARIABLES.fw.service("eventService.getEvents","upcoming_events");
+		VARIABLES.fw.service("eventService.getEvents","past_events",{pastevents=true,page=RC.page,itemsPerPage=RC.itemsPerPage});
 		REQUEST.template.setDescription("Check out our upcoming events");
 	}
 
