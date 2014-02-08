@@ -140,16 +140,26 @@ module.exports = function(grunt) {
 			}
 		},
 		'ftp-deploy': {
-  deploy: {
-    auth: {
-      host: 'ftp.finealley.com',
-      port: 21,
-      authKey: 'finealley'
-    },
-    src: 'dest/',
-    dest: '/wwwroot',
-    exclusions: ['dest/**/.DS_Store', 'dest/**/Thumbs.db', 'dest/**/build', 'dest/includes/js/tinymce/**']
-  }
+			deploy: {
+				auth: {
+					host: 'ftp.finealley.com',
+					port: 21,
+					authKey: 'finealley'
+				},
+				src: 'dest/',
+				dest: '/wwwroot',
+				exclusions: ['dest/**/.DS_Store', 'dest/**/Thumbs.db', 'dest/**/build', 'dest/includes/js/tinymce/**']
+			}
+		},
+		gitcommit: {
+			dist: {
+				options: {
+					message: 'Distribution'
+				},
+				files: {
+					src: ['dest/**']
+				}
+			}
 		}
 	}); // close grunt.initConfig
 
@@ -162,6 +172,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-ftp-deploy');
+	grunt.loadNpmTasks('grunt-git');
 
 	// Default task.
 	grunt.registerTask('default', function() {
@@ -192,9 +203,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('checkCSS', ['csslint:build']);
 	grunt.registerTask('compileLess', ['less:build','csslint:build']);
 	grunt.registerTask('buildLess', ['less:build','csslint:build','cssmin:build']);
-	grunt.registerTask('buildDist', ['copy:dist']);
+	grunt.registerTask('buildDist', ['copy:dist','gitcommit:dist']);
 	grunt.registerTask('deploy', ['ftp-deploy:deploy']);
-	grunt.registerTask('buildAndDeploy', ['copy:dist','ftp-deploy:deploy']);
+	grunt.registerTask('buildAndDeploy', ['copy:dist','gitcommit:dist','ftp-deploy:deploy']);
 
 	grunt.event.on("watch", function(action, filepath, target) {
 		var srcFolder = "src/";
