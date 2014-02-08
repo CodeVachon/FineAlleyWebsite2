@@ -122,7 +122,35 @@ module.exports = function(grunt) {
 					nospawn: true
 				} // close .options
 			} // close .lessCompile
-		} // close watch
+		}, // close watch
+		copy: {
+			dist: {
+				files: [
+					{
+						expand: true, 
+						src: ['controllers/**','layouts/**','models/**','frameworkOne/**','includes/**','services/**','views/**'], 
+						dest: 'dest/',
+						noProcess: 'views/build/*'
+					},
+					{
+						src: ['application.cfc','favicon.ico','index.cfm','robots.txt','web.config'],
+						dest: 'dest/'
+					}
+				]
+			}
+		},
+		'ftp-deploy': {
+  deploy: {
+    auth: {
+      host: 'ftp.finealley.com',
+      port: 21,
+      authKey: 'finealley'
+    },
+    src: 'dest/',
+    dest: '/distTest',
+    exclusions: ['dest/**/.DS_Store', 'dest/**/Thumbs.db', 'dest/**/build', 'dest/includes/js/tinymce/**']
+  }
+		}
 	}); // close grunt.initConfig
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -132,6 +160,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-ftp-deploy');
 
 	// Default task.
 	grunt.registerTask('default', function() {
@@ -162,6 +192,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('checkCSS', ['csslint:build']);
 	grunt.registerTask('compileLess', ['less:build','csslint:build']);
 	grunt.registerTask('buildLess', ['less:build','csslint:build','cssmin:build']);
+	grunt.registerTask('buildDist', ['copy:dist']);
+	grunt.registerTask('deploy', ['ftp-deploy:deploy']);
+	grunt.registerTask('buildAndDeploy', ['copy:dist','ftp-deploy:deploy']);
 
 	grunt.event.on("watch", function(action, filepath, target) {
 		var srcFolder = "src/";
@@ -185,4 +218,6 @@ module.exports = function(grunt) {
 			grunt.config(['cssmin', 'file', 'dest'], destFolder + "/css/<%= pkg.name %>.min.css");
 		} // close if target...
 	}); // close grunt.event.on("watch")
+
+
 }; // close module.exports
