@@ -138,7 +138,7 @@ module.exports = function(grunt) {
 					}
 				]
 			}
-		},
+		}, // close copy
 		'ftp-deploy': {
 			deploy: {
 				auth: {
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 				dest: '/wwwroot',
 				exclusions: ['dest/**/.DS_Store', 'dest/**/Thumbs.db', 'dest/**/build', 'dest/includes/js/tinymce/**']
 			}
-		},
+		}, // close ftp-deploy
 		gitcommit: {
 			dist: {
 				options: {
@@ -161,7 +161,7 @@ module.exports = function(grunt) {
 					src: ['dest/**']
 				}
 			}
-		}
+		} // close gitcommit
 	}); // close grunt.initConfig
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
