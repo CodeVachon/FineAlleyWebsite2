@@ -133,7 +133,7 @@ module.exports = function(grunt) {
 						noProcess: 'views/build/*'
 					},
 					{
-						src: ['application.cfc','favicon.ico','index.cfm','robots.txt','web.config'],
+						src: ['application.cfc','favicon.ico','index.cfm','robots.txt'],
 						dest: 'dest/'
 					}
 				]
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
       authKey: 'finealley'
     },
     src: 'dest/',
-    dest: '/distTest',
+    dest: '/wwwroot',
     exclusions: ['dest/**/.DS_Store', 'dest/**/Thumbs.db', 'dest/**/build', 'dest/includes/js/tinymce/**']
   }
 		}
