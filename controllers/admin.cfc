@@ -138,6 +138,7 @@ component output="false" displayname="admin"  {
 
 	public void function listSlides(required struct RC) {
 		REQUEST.template.setPageTitle("List Slides");
+		RC.allSlides = true;
 		VARIABLES.fw.service("carouselSlideService.getCarouselSlides","slides");
 	}
 

@@ -30,7 +30,12 @@ component output="false" displayname="carouselSlideService" extends="baseService
 
 	public array function getCarouselSlides() {
 		if ((structCount(ARGUMENTS) == 1) && structKeyExists(ARGUMENTS,"1")) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
-		return ORMExecuteQuery("SELECT DISTINCT s FROM carouselSlide s WHERE s.startDate <= :now AND s.endDate >= :now  AND s.isDeleted=:isDeleted ORDER BY s.startDate ASC",{isDeleted=false,now=now()},false);
+
+		if (structKeyExists(ARGUMENTS,"allSlides") && isBoolean(ARGUMENTS.allSlides) && ARGUMENTS.allSlides) {
+			return ORMExecuteQuery("SELECT DISTINCT s FROM carouselSlide s WHERE s.isDeleted=:isDeleted ORDER BY s.startDate ASC",{isDeleted=false},false);
+		} else {
+			return ORMExecuteQuery("SELECT DISTINCT s FROM carouselSlide s WHERE s.startDate <= :now AND s.endDate >= :now  AND s.isDeleted=:isDeleted ORDER BY s.startDate ASC",{isDeleted=false,now=now()},false);
+		}
 	}
 
 
