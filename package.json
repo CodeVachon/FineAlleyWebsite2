@@ -17,6 +17,7 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-less": "~0.8.2",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-git": "~0.2.4"
+    "grunt-git": "~0.2.4",
+    "grunt-http": "~1.0.1"
   }
 }

@@ -161,7 +161,14 @@ module.exports = function(grunt) {
 					src: ['dest/**']
 				}
 			}
-		} // close gitcommit
+		}, // close gitcommit
+		http: {
+			reload: {
+				options: {
+					url: 'http://finealley.com/?arma-iterum=onere',
+				},
+			}
+		} // close http
 	}); // close grunt.initConfig
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -174,6 +181,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-ftp-deploy');
 	grunt.loadNpmTasks('grunt-git');
+	grunt.loadNpmTasks('grunt-http');
 
 	// Default task.
 	grunt.registerTask('default', function() {
@@ -204,6 +212,8 @@ module.exports = function(grunt) {
 		grunt.log.writeln('Deploys All Files in the Dest Folder to the Live Environment');
 		grunt.log.subhead('buildAndDeploy');
 		grunt.log.writeln('Runs the Build and Deploy Tasks');
+		grunt.log.subhead('reloadLive');
+		grunt.log.writeln('Sends site reload script');
 	});
 	grunt.registerTask('buildJS', ['jshint:build','uglify:build']);
 	grunt.registerTask('checkJS', ['jshint:build']);
@@ -212,8 +222,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('compileLess', ['less:build','csslint:build']);
 	grunt.registerTask('buildLess', ['less:build','csslint:build','cssmin:build']);
 	grunt.registerTask('buildDist', ['copy:dist','gitcommit:dist']);
-	grunt.registerTask('deploy', ['ftp-deploy:deploy']);
-	grunt.registerTask('buildAndDeploy', ['copy:dist','gitcommit:dist','ftp-deploy:deploy']);
+	grunt.registerTask('deploy', ['ftp-deploy:deploy','http:reload']);
+	grunt.registerTask('buildAndDeploy', ['copy:dist','gitcommit:dist','ftp-deploy:deploy','http:reload']);
+	grunt.registerTask('reloadLive', ['http:reload']);
 
 	grunt.event.on("watch", function(action, filepath, target) {
 		var srcFolder = "src/";
