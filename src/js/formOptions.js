@@ -1,3 +1,5 @@
+var _FBInit = false;
+
 $(document).ready(function() {
 	$('form').each(function() {
 		var _form = $(this);
@@ -24,6 +26,7 @@ $(document).ready(function() {
 			});
 		} // close if time-picker
 
+
 		if (_form.find("[data-wysiwyg]")) {
 			console.log("wysiwyg Found");
 			_fileLoad = loadFileForFN("/includes/js/tinymce/jquery.tinymce.min.js","tinymce");
@@ -47,14 +50,83 @@ $(document).ready(function() {
 					$(this).tinymce(_options);
 				});
 			});
-		}
+		} // close if data-wysuwyg
+
+
+		if (_form.find("[data-fbquery]")) {
+			console.log("Facebook Query Lookup Found");
+
+			_fileLoad = loadFileForFN("//connect.facebook.net/en_UK/all.js","FB");
+			_fileLoad.done(function() {
+				_form.find("[data-fbquery]").each(function() {
+					var _this = $(this);
+					_this.wrap($('<div>').addClass('input-group'))
+						.after(
+							$('<span>').addClass('input-group-btn')
+								.append(
+									$('<button>').addClass('btn btn-default').prop('type','button')
+										.append($('<span>').addClass('glyphicon glyphicon-list-alt'))
+										.on('click', function(e) {
+											e.preventDefault();
+											console.log("Facebook Query Request");
+											if (!_FBInit) {
+												FB.init({
+													appId: '272812729524274',
+													channelUrl: '//www.finealley.com/channel.html',
+												});
+												_FBInit = true;
+											}
+											FB.getLoginStatus(function(response) {
+												if (response.authResponse) { 
+													_accessToken = response.authResponse.accessToken; 
+													FB.api(_this.attr('data-fbquery') + '&access_token=' + _accessToken, function(json) {
+														console.log(json);
+
+														var _content = $('<form>');
+														for (var key in json[_this.attr('data-fbkey')].data) {
+															_content.append(
+																$('<div>').addClass('checkbox')
+																	.append(
+																		$('<label>')
+																			.append($('<input>').prop({
+																				type: "checkbox",
+																				name: "eventId",
+																				value: json[_this.attr('data-fbkey')].data[key].id
+																			})).append(json[_this.attr('data-fbkey')].data[key].name)
+																	)
+															); // close _content.append
+														}
+
+														dialog({
+															title: "Select Facebook Event",
+															content: _content,
+															buttons: {
+																"Select": {
+																	class: "btn btn-primary",
+																	onClick: function(e) {
+																		_this.val(_content.find(":checked").val());
+																	}
+																},
+																"Cancel": function() { console.log('Cancel'); }
+															}
+														}); // close dialog
+													}); // close FB.api
+												} else {
+													console.log('Not Authenticated');
+												}
+											});
+										}) // close on click
+								) // close append span
+						); // close after
+				}); // close find fbquery
+			}); // close .done
+		} // close if data-fbquery
 	});
 });
 
 
 function loadFileForFN(_src,_fnName) {
 	var d = $.Deferred();
-
 	if ($.isFunction(_fnName)) {
 		console.log('found: ' + _fnName);
 		d.resolve();
@@ -69,6 +141,52 @@ function loadFileForFN(_src,_fnName) {
 			d.fail();
 		});
 	}
-
 	return d.promise();
+}
+
+
+function dialog(arg) {
+	var _title = ((arg.title)?arg.title:"Dialog");
+	var _content = ((arg.content)?arg.content:"No Content");
+
+	var _buttons = $('<div>').addClass('modal-footer');
+	if (arg.buttons) {
+		for (var _button in arg.buttons) {
+			if ($.isFunction(arg.buttons[_button])) {
+				_buttons.append(
+					$('<button>')
+						.attr({"data-dismiss":"modal","type":"button"})
+						.html(_button)
+						.addClass('btn btn-default')
+						.on("click",arg.buttons[_button])
+				);
+			} else {
+				_buttons.append(
+					$('<button>')
+						.attr({"data-dismiss":"modal","type":"button"})
+						.html(_button)
+						.addClass( ((arg.buttons[_button].class)?arg.buttons[_button].class:'btn btn-default') )
+						.on("click",arg.buttons[_button].onClick)
+				);
+			}
+		}
+	} else {
+		_buttons.append($('<button>').attr({"data-dismiss":"modal","type":"button"}).text("Close").addClass('btn btn-default'));
+	}
+
+	return $('<div>').addClass('modal fade').append(
+			$('<div>').addClass('modal-dialog').append(
+				$('<div>').addClass('modal-content')
+					.append(
+						$('<div>').addClass('modal-header')
+							.append($('<button>').addClass('close').attr({"type": "button","data-dismiss":"modal","aria-hidden":true}).html('&times;'))
+							.append($('<h4>').addClass('modal-title').html(_title))
+					).append(
+						$('<div>').addClass('modal-body')
+							.append(_content)
+					).append(_buttons)
+			)
+		).modal('show').on('hidden.bs.modal', function (e) {
+			$(this).remove();
+		});
 }
