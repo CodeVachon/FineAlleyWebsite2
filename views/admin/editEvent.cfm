@@ -25,7 +25,7 @@
 		</div>
 		<div class='form-group'>
 			<label for="facebookEventID">Facebook Event ID</label>
-			<input type='text' name='facebookEventID' class="form-control" value="#((structKeyExists(RC,"facebookEventID"))?RC.facebookEventID:"")#" placeholder='' />
+			<input type='text' name='facebookEventID' class="form-control" value="#((structKeyExists(RC,"facebookEventID"))?RC.facebookEventID:"")#" placeholder='' data-fbkey="events" data-fbquery="/#APPLICATION.websiteSettings.getFB_pageID()#?fields=events" />
 		</div>
 		<div class='form-group'>
 			<label for="isDeleted">Remove / Delete</label>
