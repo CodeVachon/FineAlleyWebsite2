@@ -81,35 +81,36 @@ $(document).ready(function() {
 													_accessToken = response.authResponse.accessToken; 
 													FB.api(_this.attr('data-fbquery') + '&access_token=' + _accessToken, function(json) {
 														console.log(json);
+														if (json[_this.attr('data-fbkey')]) {
+															var _content = $('<form>');
+															for (var key in json[_this.attr('data-fbkey')].data) {
+																_content.append(
+																	$('<div>').addClass('radio')
+																		.append(
+																			$('<label>')
+																				.append($('<input>').prop({
+																					type: "radio",
+																					name: "eventId",
+																					value: json[_this.attr('data-fbkey')].data[key].id
+																				})).append(json[_this.attr('data-fbkey')].data[key].name)
+																		)
+																); // close _content.append
+															}// close for each
 
-														var _content = $('<form>');
-														for (var key in json[_this.attr('data-fbkey')].data) {
-															_content.append(
-																$('<div>').addClass('checkbox')
-																	.append(
-																		$('<label>')
-																			.append($('<input>').prop({
-																				type: "checkbox",
-																				name: "eventId",
-																				value: json[_this.attr('data-fbkey')].data[key].id
-																			})).append(json[_this.attr('data-fbkey')].data[key].name)
-																	)
-															); // close _content.append
-														}
-
-														dialog({
-															title: "Select Facebook Event",
-															content: _content,
-															buttons: {
-																"Select": {
-																	class: "btn btn-primary",
-																	onClick: function(e) {
-																		_this.val(_content.find(":checked").val());
-																	}
-																},
-																"Cancel": function() { console.log('Cancel'); }
-															}
-														}); // close dialog
+															dialog({
+																title: "Select Facebook Event",
+																content: _content,
+																buttons: {
+																	"Select": {
+																		class: "btn btn-primary",
+																		onClick: function(e) {
+																			_this.val(_content.find(":checked").val());
+																		}
+																	},
+																	"Cancel": function() { console.log('Cancel'); }
+																}
+															}); // close dialog
+														} // close if key
 													}); // close FB.api
 												} else {
 													console.log('Not Authenticated');
@@ -148,7 +149,6 @@ function loadFileForFN(_src,_fnName) {
 function dialog(arg) {
 	var _title = ((arg.title)?arg.title:"Dialog");
 	var _content = ((arg.content)?arg.content:"No Content");
-
 	var _buttons = $('<div>').addClass('modal-footer');
 	if (arg.buttons) {
 		for (var _button in arg.buttons) {
@@ -172,7 +172,7 @@ function dialog(arg) {
 		}
 	} else {
 		_buttons.append($('<button>').attr({"data-dismiss":"modal","type":"button"}).text("Close").addClass('btn btn-default'));
-	}
+	} // close if arg.button
 
 	return $('<div>').addClass('modal fade').append(
 			$('<div>').addClass('modal-dialog').append(
