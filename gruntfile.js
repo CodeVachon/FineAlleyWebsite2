@@ -133,7 +133,7 @@ module.exports = function(grunt) {
 						noProcess: 'views/build/*'
 					},
 					{
-						src: ['application.cfc','favicon.ico','index.cfm','robots.txt'],
+						src: ['application.cfc','favicon.ico','index.cfm','robots.txt','**.html'],
 						dest: 'dest/'
 					}
 				]
