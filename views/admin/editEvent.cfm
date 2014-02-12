@@ -24,6 +24,10 @@
 			<input type='text' name='location' class="form-control" value="#((structKeyExists(RC,"location"))?RC.location:"")#" placeholder='location' />
 		</div>
 		<div class='form-group'>
+			<label for="facebookEventID">Facebook Event ID</label>
+			<input type='text' name='facebookEventID' class="form-control" value="#((structKeyExists(RC,"facebookEventID"))?RC.facebookEventID:"")#" placeholder='' />
+		</div>
+		<div class='form-group'>
 			<label for="isDeleted">Remove / Delete</label>
 			<select name="isDeleted"  class="form-control">
 				<option value="false"#((structKeyExists(RC,"isDeleted") && !RC.isDeleted)?" selected='selected'":"")#>No</option>
