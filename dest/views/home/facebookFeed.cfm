@@ -9,29 +9,10 @@
 
 		LOCAL.facebookData = LOCAL.facebookGraphAPI.getObject(
 			id=LOCAL._pageID,
-			fields="feed.limit(5).fields(from,full_picture,message,link,comments,likes,story),cover,picture,bio,name,band_members,band_interests,hometown,genre,likes,link"
+			fields="feed.limit(5).fields(from,full_picture,message,link,comments,likes,story,picture),cover,picture,bio,name,band_members,band_interests,hometown,genre,likes,link"
 		);
 
-		
-
-		function createDateTimeFromFBTimeStamp(required string timestamp) {
-			var regEx_timestamp = "(\d{2,4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})(\+\d{4})";
-			var dateParts = {
-				year = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\1", "one"),
-				month = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\2", "one"),
-				day = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\3", "one"),
-				hour = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\4", "one"),
-				min = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\5", "one"),
-				sec = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\6", "one"),
-				offset = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\7", "one")
-			};
-
-			var localTimeOffset = -5;
-
-			var cf_dateTime = createDateTime(dateParts.year,dateParts.month,dateParts.day,(dateParts.hour+localTimeOffset),dateParts.min,dateParts.sec);
-			return cf_dateTime;
-		}
-		//writeDump(LOCAL.moreFacebookData);
+		fbUtilities = new services.facebookUtilities();
 	</cfscript>
 	<cfoutput>
 		<header>
@@ -56,7 +37,7 @@
 				<article>
 					<header class='row'>
 						<p class='col-xs-8'>#LOCAL.feedData.from.name#</p>
-						<p class='col-xs-4 text-right'>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</p>
+						<p class='col-xs-4 text-right'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</p>
 					</header>
 					<cfif structKeyExists(LOCAL.feedData, "story")>
 						<p>#LOCAL.feedData.story#</p>
@@ -82,7 +63,7 @@
 									<div class='comment'>
 										<header class='row'>
 											<p class='col-xs-8'>#LOCAL.comment.from.name#</p>
-											<p class='col-xs-4 text-right'>#dateFormat(createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
+											<p class='col-xs-4 text-right'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
 										</header>
 										<p>#LOCAL.comment.message#</p>
 									</div>
