@@ -221,9 +221,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('checkCSS', ['csslint:build']);
 	grunt.registerTask('compileLess', ['less:build','csslint:build']);
 	grunt.registerTask('buildLess', ['less:build','csslint:build','cssmin:build']);
-	grunt.registerTask('buildDist', ['copy:dist','gitcommit:dist']);
+	grunt.registerTask('buildDist', ['copy:dist']);//,'gitcommit:dist']
 	grunt.registerTask('deploy', ['ftp-deploy:deploy','http:reload']);
-	grunt.registerTask('buildAndDeploy', ['copy:dist','gitcommit:dist','ftp-deploy:deploy','http:reload']);
+	grunt.registerTask('buildAndDeploy', ['copy:dist','ftp-deploy:deploy','http:reload']);//'gitcommit:dist',
 	grunt.registerTask('reloadLive', ['http:reload']);
 
 	grunt.event.on("watch", function(action, filepath, target) {
