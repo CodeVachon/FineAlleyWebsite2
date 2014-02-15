@@ -36,7 +36,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="wall_tw_#LOCAL.MyDetails.screen_name#">
 				<cfloop array="#LOCAL.feedItems#" index="LOCAL.feedItem">
-					<article>
+					<article class='wall-item'>
 						<header>
 							#LOCAL.feedItem.user.name#
 						</header>
@@ -58,11 +58,11 @@
 						<footer>
 							<span class='label label-primary'>#LOCAL.feedItem.retweet_count# Retweets</span>
 						</footer>
-					<article>
+					</article>
 				</cfloop>
 			</div>
 			<div class="tab-pane" id="about_tw_#LOCAL.MyDetails.screen_name#">
-				<div class='about'>
+				<div class='wall-item'>
 					<dl>
 						<dt>Followers</dt>
 						<dd>#LOCAL.MyDetails.followers_count#</dd>

@@ -123,8 +123,11 @@
 	.tab-content {
 		height: 300px;
 		overflow: auto;
-		border: 1px @navbar-default-border solid;
-		padding: 1em;
+		background-color: @navbar-default-bg;
+		.wall-item {
+			padding: 1em;
+			border-bottom: 1px @navbar-default-border solid;
+		}
 	}
 }
 

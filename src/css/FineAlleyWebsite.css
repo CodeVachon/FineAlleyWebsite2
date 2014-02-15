@@ -65,8 +65,11 @@
 .social-media-feed .tab-content {
   height: 300px;
   overflow: auto;
-  border: 1px #222222 solid;
+  background-color: #333333;
+}
+.social-media-feed .tab-content .wall-item {
   padding: 1em;
+  border-bottom: 1px #222222 solid;
 }
 .cfdump_udf,
 .cfdump_cfc,
