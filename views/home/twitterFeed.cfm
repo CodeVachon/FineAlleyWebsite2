@@ -76,7 +76,7 @@
 			</div>
 		</div><!-- close tab-content -->
 		<footer>
-			follow fine alley
+			<a href="https://twitter.com/#LOCAL.MyDetails.screen_name#" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @#LOCAL.MyDetails.screen_name#</a>
 		</footer>
 	</div>
 </cfoutput>

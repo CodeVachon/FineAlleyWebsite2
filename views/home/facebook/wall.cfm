@@ -25,10 +25,14 @@
 					</cfif>
 				</div>
 				<footer>
-					<cfif structKeyExists(LOCAL.feedData, "likes")>
-						<cfset LOCAL.likes = arrayLen(LOCAL.feedData.likes.data) />
-						<span class='label label-primary'>#LOCAL.likes# Like<cfif LOCAL.likes NEQ 1>s</cfif></span>
-					</cfif>
+					<cfscript>
+						if (structKeyExists(LOCAL.feedData, "likes")) {
+							LOCAL.likes = arrayLen(LOCAL.feedData.likes.data);
+						} else {
+							LOCAL.likes = 0;
+						}
+					</cfscript>
+					<span class='label label-primary'>#LOCAL.likes# Like<cfif LOCAL.likes NEQ 1>s</cfif></span>
 				</footer>
 				<cfif structKeyExists(LOCAL.feedData, "comments")>
 					<section class='comments'>

@@ -51,7 +51,7 @@
 				</div>
 			</div><!-- close .tab-content -->
 			<footer>
-				<cfif structKeyExists(LOCAL.facebookData, "likes")><span class='label label-primary'>#LOCAL.facebookData.likes# Likes</span></cfif>
+				<div class="fb-follow" data-href="http://www.facebook.com/FineAlleyTheBand" data-colorscheme="dark" data-layout="button" data-show-faces="false"></div>
 			</footer>
 		</div>
 	</cfoutput>
