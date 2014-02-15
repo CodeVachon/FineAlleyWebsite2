@@ -48,6 +48,12 @@
   padding: 1em;
   border-bottom: 1px #222222 solid;
 }
+.social-media-feed .tab-content .wall-item dl dt {
+  text-decoration: underline;
+}
+.social-media-feed .tab-content .wall-item dl dd {
+  margin: 0 0 1em 0;
+}
 .social-media-feed .tab-content .wall-item .comments {
   margin: 1em 0;
 }
