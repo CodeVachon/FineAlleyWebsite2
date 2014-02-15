@@ -14,33 +14,46 @@
 
 		fbUtilities = new services.facebookUtilities();
 	</cfscript>
+
 	<cfoutput>
-		<header>
-			<img src="#LOCAL.facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
-			<div class='fb-titleblock'>
-				<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&amp;height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
-				<a href='#LOCAL.facebookData.link#' class='fb-title'>#LOCAL.facebookData.name#</a>
-			</div>
-		</header>
-		<div>
-			<dl>
-				<dt>Band Members</dt>
-				<dd>#LOCAL.facebookData.band_members#</dd>
-				<dt>Genre</dt>
-				<dd>#LOCAL.facebookData.genre#</dd>
-				<dt>Hometown</dt>
-				<dd>#LOCAL.facebookData.hometown#</dd>
-			</dl>
+		<div class='facebook-feed social-media-feed'>
+			<header>
+				<img src="#LOCAL.facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
+				<div class='fb-titleblock'>
+					<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&amp;height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
+					<a href='#LOCAL.facebookData.link#' class='fb-title'>#LOCAL.facebookData.name#</a>
+				</div>
+			</header>
+
+			<ul class="nav nav-pills nav-justified data-selection">
+				<li class="active"><a href="##wall_fb_#LOCAL.facebookData.id#" data-toggle="tab">Wall</a></li>
+				<li><a href="##about_fb_#LOCAL.facebookData.id#" data-toggle="tab">About</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="wall_fb_#LOCAL.facebookData.id#">
+					<cfscript>
+						RC.fbWallData = LOCAL.facebookData.feed.data;
+						writeOutput(view("home/facebook/wall"));
+					</cfscript>
+				</div>
+				<div class="tab-pane" id="about_fb_#LOCAL.facebookData.id#">
+					<div class='wall-item'>
+						<dl>
+							<dt>Band Members</dt>
+							<dd>#LOCAL.facebookData.band_members#</dd>
+							<dt>Genre</dt>
+							<dd>#LOCAL.facebookData.genre#</dd>
+							<dt>Hometown</dt>
+							<dd>#LOCAL.facebookData.hometown#</dd>
+						</dl>
+					</div>
+				</div>
+			</div><!-- close .tab-content -->
+			<footer>
+				<cfif structKeyExists(LOCAL.facebookData, "likes")><span class='label label-primary'>#LOCAL.facebookData.likes# Likes</span></cfif>
+			</footer>
 		</div>
-
-		<cfscript>
-			RC.fbWallData = LOCAL.facebookData.feed.data;
-			writeOutput(view("home/facebook/wall"));
-		</cfscript>
-
-		<footer>
-			<cfif structKeyExists(LOCAL.facebookData, "likes")><span class='label label-primary'>#LOCAL.facebookData.likes# Likes</span></cfif>
-		</footer>
 	</cfoutput>
 <cfelseif REQUEST.security.checkPermission("isAdmin")>
 	<cfoutput>
