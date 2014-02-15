@@ -55,7 +55,7 @@
 						</div>
 						<div class='col-sm-12 col-md-5'>
 							<h4>Map</h4>
-							<div class='venue-map' data-address='#RC.venue.getName()# #LOCAL.facebookData.location.street# #LOCAL.facebookData.location.city#, #LOCAL.facebookData.location.state# #LOCAL.facebookData.location.country#'></div>
+							<div class='venue-map' data-address="#RC.venue.getName()# #LOCAL.facebookData.location.street# #LOCAL.facebookData.location.city#, #LOCAL.facebookData.location.state# #LOCAL.facebookData.location.country#"></div>
 						</div>
 					</cfif>
 					<cfif structKeyExists(LOCAL.facebookData, "hours")>
