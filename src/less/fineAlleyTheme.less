@@ -111,6 +111,7 @@
 			display: table-cell;
 			width: 1%;
 			a { 
+				border-radius: 0;
 				color: @text-color; 
 				&:hover {
 					color: @navbar-default-link-hover-color;
@@ -120,8 +121,10 @@
 		}
 	}
 	.tab-content {
-		height: 400px;
+		height: 300px;
 		overflow: auto;
+		border: 1px @navbar-default-border solid;
+		padding: 1em;
 	}
 }
 

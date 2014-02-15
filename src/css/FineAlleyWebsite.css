@@ -55,6 +55,7 @@
   width: 1%;
 }
 .social-media-feed ul.data-selection li a {
+  border-radius: 0;
   color: #eeeeee;
 }
 .social-media-feed ul.data-selection li a:hover {
@@ -62,8 +63,10 @@
   backgrond-color: transparent;
 }
 .social-media-feed .tab-content {
-  height: 400px;
+  height: 300px;
   overflow: auto;
+  border: 1px #222222 solid;
+  padding: 1em;
 }
 .cfdump_udf,
 .cfdump_cfc,
