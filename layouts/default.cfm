@@ -108,6 +108,15 @@
 				writeOutput(chr(10) & chr(9) & chr(9) & "<script type='text/javascript' src='#jsFile#'></script>");
 			}
 		</cfscript>
+		<cfif len(APPLICATION.websiteSettings.getFB_appID()) GT 0><cfoutput><div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js##xfbml=1&appId=#APPLICATION.websiteSettings.getFB_appID()#";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script></cfoutput></cfif>
 		<cfif (NOT ISNULL(APPLICATION.websiteSettings.getGoogle_gaCode())) AND (len(APPLICATION.websiteSettings.getGoogle_gaCode()) GT 0)><cfoutput><script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

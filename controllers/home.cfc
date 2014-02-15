@@ -86,4 +86,10 @@ component output="false" displayname="home"  {
 		RC.layoutSideBars = false;
 		REQUEST.template.setPageTitle("Fine Alley on Facebook");
 	}
+
+
+	public void function twitterFeed(required struct RC) {
+		RC.layoutSideBars = false;
+		REQUEST.template.setPageTitle("Fine Alley on Twitter");
+	}
 }

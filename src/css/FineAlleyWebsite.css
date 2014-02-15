@@ -15,28 +15,58 @@
   margin: 0.4em 0 0.4em 33%;
   line-height: 2em;
 }
-.fb-wall {
-  max-height: 250px;
-  overflow: auto;
-  border: 1px #222222 solid;
-}
-.fb-wall article {
-  margin: 0;
+.twitter-feed .twitterDetails {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   padding: 1em;
+  text-align: center;
 }
-.fb-wall article header {
+.twitter-feed .twitterDetails .profile-img {
+  width: 25%;
+  min-width: 48px;
+  max-width: 148px;
+}
+.social-media-feed ul.data-selection li {
+  display: table-cell;
+  width: 1%;
+}
+.social-media-feed ul.data-selection li a {
+  border-radius: 0;
+  color: #eeeeee;
+}
+.social-media-feed ul.data-selection li a:hover {
+  color: #cccccc;
+  backgrond-color: transparent;
+}
+.social-media-feed .tab-content {
+  height: 300px;
+  overflow: auto;
   background-color: #333333;
-  margin: 0 -15px 1em -15px;
 }
-.fb-wall article header p {
-  margin: 0.5em 0;
+.social-media-feed .tab-content .wall-item {
+  padding: 1em;
+  border-bottom: 1px #222222 solid;
 }
-.fb-wall article section .comment {
-  margin: 0 1em;
+.social-media-feed .tab-content .wall-item .comments {
+  margin: 1em 0;
 }
-.fb-wall article section .comment header {
-  color: #888888;
-  border-radius: 0.5em;
+.social-media-feed .tab-content .wall-item .comments header {
+  background-color: #4d4d4d;
+  padding: 0.5em 1em;
+}
+.social-media-feed .tab-content .wall-item .comments header p {
+  margin: 0;
+}
+.social-media-feed .tab-content .wall-item .comments .comment header {
+  background-color: #333333;
+  padding: 0;
+}
+.social-media-feed .tab-content .wall-item footer {
+  padding: 0.25em 0;
+}
+.social-media-feed footer {
+  padding: 0.5em 0;
 }
 .cfdump_udf,
 .cfdump_cfc,
@@ -4237,8 +4267,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #ffffff;
-  background-color: #428bca;
+  color: #333333;
+  background-color: #333333;
 }
 .nav-stacked > li {
   float: none;

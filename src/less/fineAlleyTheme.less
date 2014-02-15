@@ -24,6 +24,10 @@
 @navbar-default-toggle-icon-bar-bg:        @navbar-default-border;
 @navbar-default-toggle-border-color:       @navbar-default-border;
 
+@nav-pills-border-radius:                   @border-radius-base;
+@nav-pills-active-link-hover-bg:            @navbar-default-bg;
+@nav-pills-active-link-hover-color:         @navbar-default-bg;
+
 
 @panel-bg:                    lighten(@body-bg, 10%);
 @panel-inner-border:          #ddd;
@@ -60,30 +64,65 @@
 		line-height: 2em;
 	}
 }
-.fb-wall {
-	max-height: 250px;
-	overflow: auto;
-	border: 1px @navbar-default-border solid;
 
-	article {
-		margin: 0;
+.twitter-feed {
+	.twitterDetails {
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
 		padding: 1em;
-
-		header {
-			background-color: @navbar-default-bg;
-			margin: 0 -15px 1em -15px;
-			p { margin: 0.5em 0; }
+		text-align: center;
+		.profile-img {
+			width: 25%;
+			min-width: 48px;
+			max-width: 148px;
 		}
+	}
+}
 
-		section {
-			.comment {
-				margin: 0 1em;
-				header { 
-					color: darken(@text-color, 40%); 
-					border-radius: 0.5em;
+.social-media-feed {
+	ul.data-selection {
+		li {
+			display: table-cell;
+			width: 1%;
+			a { 
+				border-radius: 0;
+				color: @text-color; 
+				&:hover {
+					color: @navbar-default-link-hover-color;
+					backgrond-color: @navbar-default-link-hover-bg;
 				}
 			}
 		}
+	}
+	.tab-content {
+		height: 300px;
+		overflow: auto;
+		background-color: @navbar-default-bg;
+		.wall-item {
+			padding: 1em;
+			border-bottom: 1px @navbar-default-border solid;
+			.comments {
+				margin: 1em 0;
+				header {
+					background-color: lighten(@navbar-default-bg, 10%);
+					padding: 0.5em 1em;
+					p { margin: 0; }
+				}
+				.comment {
+					header {
+						background-color: @navbar-default-bg;
+						padding: 0;
+					}
+				}
+			}
+			footer {
+				padding: 0.25em 0;
+			}
+		}
+	}
+	footer {
+		padding: 0.5em 0;
 	}
 }
 
