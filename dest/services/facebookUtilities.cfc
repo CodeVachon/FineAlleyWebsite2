@@ -8,7 +8,7 @@
 
 component output="false" displayname=""  {
 
-	public function init(){
+	public function init() {
 		return this;
 	}
 

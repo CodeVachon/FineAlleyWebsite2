@@ -17,6 +17,15 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 	property name="FB_appSecret" type="string";
 	property name="FB_pageID" type="string";
 
+
+	// Twitter Connection
+	property name="TW_ConsumerKey" type="string";
+	property name="TW_ConsumerSecret" type="string";
+	property name="TW_AccessToken" type="string";
+	property name="TW_AccessTokenSecret" type="string";
+	property name="TW_UserName" type="string";
+
+
 	// OPENGRAPH
 	property name="openGraphTags" fieldtype="collection" type="struct" table="websiteSettings_ogTags" fkcolumn="fk_WebsiteSettingsID" structkeycolumn="OGKey" structkeytype="string" elementColumn="OGValue" elementtype="string" lazy="false";
 
@@ -50,6 +59,13 @@ component output="false" displayname="websiteSettings" extends="base" persistent
 		if (!structKeyExists(VARIABLES,"FB_appID")) { VARIABLES["FB_appID"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"FB_appSecret")) { VARIABLES["FB_appSecret"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"FB_pageID")) { VARIABLES["FB_pageID"] = javaCast("null",""); }
+
+		// Twitter
+		if (!structKeyExists(VARIABLES,"TW_ConsumerKey")) { VARIABLES["TW_ConsumerKey"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"TW_ConsumerSecret")) { VARIABLES["TW_ConsumerSecret"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"TW_AccessToken")) { VARIABLES["TW_AccessToken"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"TW_AccessTokenSecret")) { VARIABLES["TW_AccessTokenSecret"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"TW_UserName")) { VARIABLES["TW_UserName"] = javaCast("null",""); }
 
 		// openGraph
 		if (!structKeyExists(VARIABLES,"openGraphTags")) { VARIABLES["openGraphTags"] = {}; }
