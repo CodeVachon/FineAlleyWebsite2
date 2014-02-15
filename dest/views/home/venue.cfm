@@ -94,7 +94,7 @@
 				<div class='row'>
 					<h4>#LOCAL.key# Events</h4>
 					<cfloop array="#LOCAL.events[LOCAL.key]#" index="RC.event">
-						#view('home/event')#
+						#view('home/eventSummary')#
 					</cfloop>
 				</div>
 			</cfif>

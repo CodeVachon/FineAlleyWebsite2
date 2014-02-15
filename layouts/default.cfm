@@ -98,7 +98,7 @@
 					<div class='col-sm-12 text-right'>
 						<p>We (the band members of Fine Alley and/or the band as a whole) do not claim rights or ownership to any music we play unless otherwise specified.</p>
 						<p>Hosted By: <a href="http://www.rabeycreative.com/">Rabey Creative</a></p>
-						<p>&copy; Fine Alley 2013 <!---| <a href="">Privacy Policy</a> | <a href="">Term of Use</a>---></p>
+						<p>&copy; Fine Alley #year(now())# <!---| <a href="">Privacy Policy</a> | <a href="">Term of Use</a>---></p>
 					</div>
 				</footer>
 			</cfoutput>

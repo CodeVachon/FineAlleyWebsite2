@@ -11,7 +11,7 @@ and upcoming events.  Or <a href='/contact-us'>Contact Us</a> for more informati
 	<cfoutput>
 		<cfset RC.useVenueSummary = true />
 		<cfloop array="#RC.events#" index="RC.event">
-			#view('home/event')#
+			#view('home/eventSummary')#
 		</cfloop>
 	</cfoutput>
 </div>
