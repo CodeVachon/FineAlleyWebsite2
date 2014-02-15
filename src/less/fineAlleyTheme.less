@@ -64,32 +64,7 @@
 		line-height: 2em;
 	}
 }
-.fb-wall {
-	max-height: 250px;
-	overflow: auto;
-	border: 1px @navbar-default-border solid;
 
-	article {
-		margin: 0;
-		padding: 1em;
-
-		header {
-			background-color: @navbar-default-bg;
-			margin: 0 -15px 1em -15px;
-			p { margin: 0.5em 0; }
-		}
-
-		section {
-			.comment {
-				margin: 0 1em;
-				header { 
-					color: darken(@text-color, 40%); 
-					border-radius: 0.5em;
-				}
-			}
-		}
-	}
-}
 .twitter-feed {
 	.twitterDetails {
 		background-repeat: no-repeat;
@@ -127,6 +102,20 @@
 		.wall-item {
 			padding: 1em;
 			border-bottom: 1px @navbar-default-border solid;
+			.comments {
+				margin: 1em 0;
+				header {
+					background-color: lighten(@navbar-default-bg, 10%);
+					padding: 0.5em 1em;
+					p { margin: 0; }
+				}
+				.comment {
+					header {
+						background-color: @navbar-default-bg;
+						padding: 0;
+					}
+				}
+			}
 		}
 	}
 }

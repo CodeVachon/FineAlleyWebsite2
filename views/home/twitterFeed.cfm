@@ -39,7 +39,7 @@
 						<header>
 							#LOCAL.feedItem.user.name#
 						</header>
-						<div>
+						<div class='body'>
 							#LOCAL.twHelp.formatText(LOCAL.feedItem.text)#
 
 							<cfif structKeyExists(LOCAL.feedItem,"entities")>
