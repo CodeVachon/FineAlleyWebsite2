@@ -38,6 +38,39 @@
   color: #888888;
   border-radius: 0.5em;
 }
+.twitter-feed .twitterDetails {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 1em;
+  text-align: center;
+}
+.twitter-feed .twitterDetails .profile-img {
+  width: 25%;
+  min-width: 48px;
+  max-width: 148px;
+}
+.social-media-feed ul.data-selection li {
+  display: table-cell;
+  width: 1%;
+}
+.social-media-feed ul.data-selection li a {
+  border-radius: 0;
+  color: #eeeeee;
+}
+.social-media-feed ul.data-selection li a:hover {
+  color: #cccccc;
+  backgrond-color: transparent;
+}
+.social-media-feed .tab-content {
+  height: 300px;
+  overflow: auto;
+  background-color: #333333;
+}
+.social-media-feed .tab-content .wall-item {
+  padding: 1em;
+  border-bottom: 1px #222222 solid;
+}
 .cfdump_udf,
 .cfdump_cfc,
 .cfdump_struct {
@@ -4237,8 +4270,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #ffffff;
-  background-color: #428bca;
+  color: #333333;
+  background-color: #333333;
 }
 .nav-stacked > li {
   float: none;
