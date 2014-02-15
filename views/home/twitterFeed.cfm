@@ -26,7 +26,6 @@
 		<header class='twitterDetails'<cfif structKeyExists(LOCAL.MyDetails,"profile_background_image_url")> style='background-image: url("#LOCAL.MyDetails.profile_background_image_url#");'</cfif>>
 			<img src='#replaceNoCase(LOCAL.MyDetails.profile_image_url,"_normal","","once")#' alt='twitter profile image' class='profile-img img-responsive img-thumbnail' />
 			<p class='screen-name'><a href='https://twitter.com/#LOCAL.MyDetails.screen_name#' target="_blank">#LOCAL.MyDetails.screen_name#</a></p>
-			<p class='description'>#LOCAL.MyDetails.description#</p>
 		</header>
 
 		<ul class="nav nav-pills nav-justified data-selection">
@@ -64,6 +63,8 @@
 			<div class="tab-pane" id="about_tw_#LOCAL.MyDetails.screen_name#">
 				<div class='wall-item'>
 					<dl>
+						<dt>Description</dt>
+						<dd>#LOCAL.MyDetails.description#</dd>
 						<dt>Followers</dt>
 						<dd>#LOCAL.MyDetails.followers_count#</dd>
 						<dt>Following</dt>
