@@ -24,6 +24,10 @@
 @navbar-default-toggle-icon-bar-bg:        @navbar-default-border;
 @navbar-default-toggle-border-color:       @navbar-default-border;
 
+@nav-pills-border-radius:                   @border-radius-base;
+@nav-pills-active-link-hover-bg:            @navbar-default-bg;
+@nav-pills-active-link-hover-color:         @navbar-default-bg;
+
 
 @panel-bg:                    lighten(@body-bg, 10%);
 @panel-inner-border:          #ddd;
@@ -98,6 +102,26 @@
 			min-width: 48px;
 			max-width: 148px;
 		}
+	}
+}
+
+.social-media-feed {
+	ul.data-selection {
+		li {
+			display: table-cell;
+			width: 1%;
+			a { 
+				color: @text-color; 
+				&:hover {
+					color: @navbar-default-link-hover-color;
+					backgrond-color: @navbar-default-link-hover-bg;
+				}
+			}
+		}
+	}
+	.tab-content {
+		height: 400px;
+		overflow: auto;
 	}
 }
 

@@ -50,6 +50,21 @@
   min-width: 48px;
   max-width: 148px;
 }
+.social-media-feed ul.data-selection li {
+  display: table-cell;
+  width: 1%;
+}
+.social-media-feed ul.data-selection li a {
+  color: #eeeeee;
+}
+.social-media-feed ul.data-selection li a:hover {
+  color: #cccccc;
+  backgrond-color: transparent;
+}
+.social-media-feed .tab-content {
+  height: 400px;
+  overflow: auto;
+}
 .cfdump_udf,
 .cfdump_cfc,
 .cfdump_struct {
@@ -4249,8 +4264,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #ffffff;
-  background-color: #428bca;
+  color: #333333;
+  background-color: #333333;
 }
 .nav-stacked > li {
   float: none;
