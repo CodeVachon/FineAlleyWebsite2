@@ -78,6 +78,39 @@
 			max-width: 148px;
 		}
 	}
+	.wall-item {
+		footer {
+			li {
+				padding: 0;
+				a {
+					display: block;
+					background-image: url('/includes/img/twitter-everything-spritev2.png');
+					background-repeat: no-repeat;
+					background-position: 0 center;
+					padding: 0;
+					min-width: 16px;
+					min-height: 16px;
+					&.tw-reply {
+						background-position: 0 center;
+						&:hover { background-position: -16px center; }
+					}
+					&.tw-retweet {
+						background-position: -80px center;
+						&:hover { background-position: -96px center; }
+					}
+					&.tw-favorite {
+						background-position: -32px center;
+						&:hover { background-position: -48px center; }
+					}
+					span {
+						margin: 0 0 0 18px;
+						padding: 0 5px 0 0;
+						background-color: @navbar-default-bg;
+					}
+				}
+			}
+		}
+	}
 }
 
 .social-media-feed {
