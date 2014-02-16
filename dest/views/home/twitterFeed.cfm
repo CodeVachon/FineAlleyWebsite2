@@ -40,7 +40,6 @@
 							</header>
 							<div class='body'>
 								#LOCAL.twHelp.formatText(LOCAL.feedItem.text)#
-
 								<cfif structKeyExists(LOCAL.feedItem,"entities")>
 									<section class='media'>
 										<cfif structKeyExists(LOCAL.feedItem.entities, "media")>
