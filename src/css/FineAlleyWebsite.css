@@ -103,11 +103,20 @@
   padding: 0.5em 1em;
 }
 .social-media-feed .tab-content .wall-item .comments header p {
-  margin: 0;
+  margin: 0.25em 1em;
+}
+.social-media-feed .tab-content .wall-item .comments header a {
+  color: #eeeeee;
+}
+.social-media-feed .tab-content .wall-item .comments header .post-date {
+  margin: 0 0 0 1em;
 }
 .social-media-feed .tab-content .wall-item .comments .comment header {
   background-color: #333333;
   padding: 0;
+}
+.social-media-feed .tab-content .wall-item .comments .comment header a {
+  color: #eeeeee;
 }
 .social-media-feed .tab-content .wall-item footer {
   padding: 0.25em 0;
