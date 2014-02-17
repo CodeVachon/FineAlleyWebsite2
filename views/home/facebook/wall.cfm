@@ -78,11 +78,12 @@
 									</cfif>
 									<div class='media-body'>
 										<header class='media-heading'>
-											<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</span>
+											<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</span>
 											<cfif structKeyExists(LOCAL.userData,"link")>
 												<a href='#LOCAL.userData.link#'>#LOCAL.userData.name#</a>
+											<cfelse>
+												#LOCAL.userData.name#
 											</cfif>
-											#LOCAL.userData.name#
 										</header>
 										<p>#LOCAL.comment.message#</p>
 										<footer>
