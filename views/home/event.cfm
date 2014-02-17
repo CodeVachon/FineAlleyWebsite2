@@ -24,6 +24,7 @@
 		</div>
 	</cfif>
 
+<!---
 	<cfif len(RC.event.getFacebookEventID()) GT 0>
 		<cfscript>
 			LOCAL._appID = APPLICATION.websiteSettings.getFB_appID();
@@ -49,4 +50,5 @@
 			writeOutput(view("home/facebook/wall"));
 		</cfscript>
 	</cfif>
+--->
 </cfoutput>
