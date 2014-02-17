@@ -26,4 +26,21 @@ component output="false" displayname="twitterAPI"  {
 
 		return _returnText;
 	}
+
+	public date function createDateTimeFromTwitterTimeStamp(required string timestamp) {
+		var regEx_timestamp = "(\w+)\s(\w+)\s(\d+)\s(\d+)\:(\d+)\:(\d+)\s\+\d+\s(\d+)";
+		var dateParts = {
+			year = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\7", "one"),
+			month = month(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\2 1 \7", "one")), // twitter returns Feb instread of 2
+			day = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\3", "one"),
+			hour = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\4", "one"),
+			min = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\5", "one"),
+			sec = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\6", "one")
+		};
+		var localTimeOffset = -5;
+
+		var cf_dateTime = createDateTime(dateParts.year,dateParts.month,dateParts.day,dateParts.hour,dateParts.min,dateParts.sec);
+		cf_dateTime = DateAdd("h",localTimeOffset,cf_dateTime);
+		return cf_dateTime;
+	}
 }
