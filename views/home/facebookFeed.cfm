@@ -21,7 +21,7 @@
 				<img src="#LOCAL.facebookData.cover.source#" class="img-responsive" alt="facebook Cover Image" />
 				<div class='fb-titleblock'>
 					<img src="https://graph.facebook.com/#LOCAL.facebookData.id#/picture?width=200&amp;height=200" class="img-responsive img-thumbnail img-fbthumb" alt="facebook Profile Image">
-					<a href='#LOCAL.facebookData.link#' class='fb-title'>#LOCAL.facebookData.name#</a>
+					<a href='#replace(LOCAL.facebookData.link,"&","&amp;","all")#' class='fb-title' title='goto #LOCAL.facebookData.name# facebook profile'>#LOCAL.facebookData.name#</a>
 				</div>
 			</header>
 
@@ -51,7 +51,7 @@
 				</div>
 			</div><!-- close .tab-content -->
 			<footer>
-				<div class="fb-follow" data-href="http://www.facebook.com/FineAlleyTheBand" data-colorscheme="dark" data-layout="button" data-show-faces="false"></div>
+				<div class="fb-follow" data-href="#replace(LOCAL.facebookData.link,"&","&amp;","all")#" data-colorscheme="dark" data-layout="button" data-show-faces="false"></div>
 			</footer>
 		</div>
 	</cfoutput>

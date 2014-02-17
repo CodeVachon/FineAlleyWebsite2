@@ -30,19 +30,19 @@
 				//writeDump(LOCAL.userData);
 			</cfscript>
 			<article class='wall-item media'>
-				<a href='#LOCAL.userData.link#' class='pull-left' target='_blank'><img src='#LOCAL.userData.picture.data.url#' class='media-object' /></a>
+				<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' class='pull-left' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'><img src='#LOCAL.userData.picture.data.url#' class='media-object' alt='image of #LOCAL.userData.name#' /></a>
 				<div class='media-body'>
 					<header class='media-heading'>
 						<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</span>
-						<a href='#LOCAL.userData.link#'>#LOCAL.feedData.from.name#</a>
+						<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'>#LOCAL.userData.name#</a>
 					</header>
 					<div class='body'>
 						<cfif structKeyExists(LOCAL.feedData, "story")>
 							<p>#LOCAL.feedData.story#</p>
 						</cfif>
 						<cfif structKeyExists(LOCAL.feedData, "full_picture")>
-							<a href='#LOCAL.feedData.link#'>
-								<img src='#LOCAL.feedData.full_picture#' class='img-responsive img-thumbnail' />
+							<a href='#replace(LOCAL.feedData.link,"&","&amp;","all")#' target='_blank' title='expand image'>
+								<img src='#replace(LOCAL.feedData.full_picture,"&","&amp;","all")#' class='img-responsive img-thumbnail' alt='post image' />
 							</a>
 						</cfif>
 						<cfif structKeyExists(LOCAL.feedData, "message")>
@@ -72,19 +72,19 @@
 										//writeDump(LOCAL.userData);
 									</cfscript>
 									<cfif structKeyExists(LOCAL.userData,"link")>
-									<a href='#LOCAL.userData.link#' class='pull-left' target='_blank'><img src='#LOCAL.userData.picture.data.url#' class='media-object' /></a>
+									<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' class='pull-left' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'><img src='#replace(LOCAL.userData.picture.data.url,"&","&amp;","all")#' class='media-object' alt='image of #LOCAL.userData.name#' /></a>
 									<cfelse>
-										<div class='pull-left'><img src='#LOCAL.userData.picture.data.url#' class='media-object' /></div>
+										<div class='pull-left'><img src='#replace(LOCAL.userData.picture.data.url,"&","&amp;","all")#' class='media-object' alt='image of #LOCAL.userData.name#' /></div>
 									</cfif>
 									<div class='media-body'>
 										<header class='media-heading'>
-											<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</span>
 											<cfif structKeyExists(LOCAL.userData,"link")>
-												<a href='#LOCAL.userData.link#'>#LOCAL.userData.name#</a>
+												<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'>#LOCAL.userData.name#</a>
 											<cfelse>
 												#LOCAL.userData.name#
 											</cfif>
 										</header>
+										<p>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
 										<p>#LOCAL.comment.message#</p>
 										<footer>
 										</footer>
