@@ -27,6 +27,9 @@
   min-width: 48px;
   max-width: 148px;
 }
+.twitter-feed .wall-item header .post-date {
+  margin: 0 0 0 1em;
+}
 .twitter-feed .wall-item footer li {
   padding: 0;
 }
@@ -88,6 +91,9 @@
 }
 .social-media-feed .tab-content .wall-item dl dd {
   margin: 0 0 1em 0;
+}
+.social-media-feed .tab-content .wall-item img {
+  margin: 0.25em 0;
 }
 .social-media-feed .tab-content .wall-item .comments {
   margin: 1em 0;
