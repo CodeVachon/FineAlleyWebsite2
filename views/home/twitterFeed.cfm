@@ -56,9 +56,9 @@
 									</div>
 									<footer>
 										<ul class='pull-right list-unstyled list-inline'>
-											<li><a href="https://twitter.com/intent/tweet?in_reply_to=#LOCAL.feedItem.id_str#" class='tw-reply'><span class='hidden-md hidden-sm'>Reply</span></a></li>
-											<li><a href="https://twitter.com/intent/retweet?tweet_id=#LOCAL.feedItem.id_str#" class='tw-retweet'><span class='hidden-md hidden-sm'>Retweet</span></a></li>
-											<li><a href="https://twitter.com/intent/favorite?tweet_id=#LOCAL.feedItem.id_str#" class='tw-favorite'><span class='hidden-md hidden-sm'>Favorite</span></a></li>
+											<li><a href="https://twitter.com/intent/tweet?in_reply_to=#LOCAL.feedItem.id_str#" class='tw-reply' title='Reply to #LOCAL.feedItem.user.name#'><span class='hidden-md hidden-sm'>Reply</span></a></li>
+											<li><a href="https://twitter.com/intent/retweet?tweet_id=#LOCAL.feedItem.id_str#" class='tw-retweet' title='Retweet this Post'><span class='hidden-md hidden-sm'>Retweet</span></a></li>
+											<li><a href="https://twitter.com/intent/favorite?tweet_id=#LOCAL.feedItem.id_str#" class='tw-favorite' title='Favorite this Post'><span class='hidden-md hidden-sm'>Favorite</span></a></li>
 										</ul>
 										<span class='label label-primary'>#LOCAL.feedItem.retweet_count# Retweets</span>
 									</footer>
