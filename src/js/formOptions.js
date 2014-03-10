@@ -5,8 +5,7 @@ $(document).ready(function() {
 		var _form = $(this);
 		if (_form.find("[data-datepicker]")) {
 			console.log("Date Picker Found");
-			_fileLoad = loadFileForFN("/includes/js/bootstrap-datepicker.js","datepicker");
-			_fileLoad.done(function() {
+			loadFileForFN("/includes/js/bootstrap-datepicker.js","datepicker").done(function() {
 				_form.find("[data-datepicker]").each(function() {
 					var _options = {"format":"yyyy/mm/dd","todayBtn": true};
 					$(this).datepicker(_options);
@@ -17,8 +16,7 @@ $(document).ready(function() {
 
 		if (_form.find("[data-timepicker]")) {
 			console.log("Time Picker Found");
-			_fileLoad = loadFileForFN("/includes/js/bootstrap-timepicker.min.js","timepicker");
-			_fileLoad.done(function() {
+			loadFileForFN("/includes/js/bootstrap-timepicker.min.js","timepicker").done(function() {
 				_form.find("[data-timepicker]").each(function() {
 					var _options = {"showMeridian":false};
 					$(this).timepicker(_options);
@@ -29,8 +27,7 @@ $(document).ready(function() {
 
 		if (_form.find("[data-wysiwyg]")) {
 			console.log("wysiwyg Found");
-			_fileLoad = loadFileForFN("/includes/js/tinymce/jquery.tinymce.min.js","tinymce");
-			_fileLoad.done(function() {
+			loadFileForFN("/includes/js/tinymce/jquery.tinymce.min.js","tinymce").done(function() {
 				_form.find("[data-wysiwyg]").each(function() {
 					var _options = {
 						script_url: '/includes/js/tinymce/tinymce.min.js',
@@ -56,8 +53,7 @@ $(document).ready(function() {
 		if (_form.find("[data-fbquery]")) {
 			console.log("Facebook Query Lookup Found");
 
-			_fileLoad = loadFileForFN("//connect.facebook.net/en_UK/all.js","FB");
-			_fileLoad.done(function() {
+			loadFileForFN("//connect.facebook.net/en_UK/all.js","FB").done(function() {
 				_form.find("[data-fbquery]").each(function() {
 					var _this = $(this);
 					_this.wrap($('<div>').addClass('input-group'))
