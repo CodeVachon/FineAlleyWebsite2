@@ -33,7 +33,7 @@
 				<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' class='pull-left' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'><img src='#LOCAL.userData.picture.data.url#' class='media-object' alt='image of #LOCAL.userData.name#' /></a>
 				<div class='media-body'>
 					<header class='media-heading'>
-						<!---<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</span>--->
+						<span class='pull-right post-date'>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.feedData.created_time),"MMM D")#</span>
 						<a href='#replace(LOCAL.userData.link,"&","&amp;","all")#' target='_blank' title='goto #LOCAL.userData.name# profile on facebook'>#LOCAL.userData.name#</a>
 					</header>
 					<div class='body'>
@@ -85,7 +85,7 @@
 											</cfif>
 										</header>
                                  
-										<!---<p>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>--->
+										<p>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
 										<p>#LOCAL.comment.message#</p>
 										<footer>
 										</footer>
