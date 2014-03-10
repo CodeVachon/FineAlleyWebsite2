@@ -36,7 +36,7 @@
 								<a href='https://twitter.com/#LOCAL.feedItem.user.screen_name#' class='pull-left' target='_blank'><img src='#LOCAL.feedItem.user.profile_image_url#' class='media-object' /></a>
 								<div class='media-body'>
 									<header class='media-heading'>
-										<span class='pull-right post-date'>#dateFormat(LOCAL.twHelp.createDateTimeFromTwitterTimeStamp(LOCAL.feedItem.created_at),"mmm d")#</span>
+										<!---<span class='pull-right post-date'>#dateFormat(LOCAL.twHelp.createDateTimeFromTwitterTimeStamp(LOCAL.feedItem.created_at),"mmm d")#</span>--->
 										#LOCAL.feedItem.user.name#
 										<a href='https://twitter.com/#LOCAL.feedItem.user.screen_name#' target='_blank' class='screen-name'>@#LOCAL.feedItem.user.screen_name#</a>
 									</header>
