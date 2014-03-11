@@ -84,6 +84,7 @@
 												#LOCAL.userData.name#
 											</cfif>
 										</header>
+                                 
 										<p>#dateFormat(fbUtilities.createDateTimeFromFBTimeStamp(LOCAL.comment.created_time),"MMM D")#</p>
 										<p>#LOCAL.comment.message#</p>
 										<footer>
